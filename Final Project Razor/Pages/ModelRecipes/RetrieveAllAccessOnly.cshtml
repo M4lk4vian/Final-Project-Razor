@@ -1,0 +1,25 @@
+﻿@page
+@model Final_Project_Razor.Pages.ReceitaModel
+@{
+}
+<p>Accepted Recipes</p>
+@foreach (var item in Model.AcceptedRecipes)
+{
+    <div>
+        <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.Id">
+            <button>@item.Title</button>
+        </a>
+    </div>
+
+}
+<br />
+<p>Blocked Recipes</p>
+@foreach (var item in Model.BlockedRecipes)
+{
+    <div>
+        <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.Id">
+            <button>@item.Title</button>
+        </a>
+    </div>
+}
+

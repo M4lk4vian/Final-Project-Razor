@@ -1,0 +1,35 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelRecipes.RetrieveAllDetailsModel
+@{
+}
+@foreach (var item in Model.Recipes)
+{
+    <div>
+        <a asp-page="/ModelRecipes/RetrieveByIdDetails" asp-route-Id="@item.Id"><button>@item.Title</button></a>
+
+        <br />
+    </div>
+    @* <div class="d-inline p-2 bg-primary text-white">
+        @item.Title
+    </div>
+    <br />
+    <br />
+    <div class="d-inline p-2 sm-primary text-white">
+        @item.PrepMethod
+        <li style="display: inline">
+            @item.PrepTime, @item.Difficulty.DifficultyName, @item.Category.CategoryName
+        </li>
+        <p>Ingredients</p>
+        @foreach (var ing in Model.IngredientsRecipes)
+        {
+            <li style="display: inline">@ing.Ingredient.IngredientName: @ing.Quantity @ing.Unit.UnitName</li>
+        }
+
+    </div>
+
+    <br />
+
+    <br /> *@
+
+
+}

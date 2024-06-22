@@ -1,0 +1,10 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelComments.RetrieveCommentsByUserIdModel
+@{
+}
+@foreach(var item in Model.Comments)
+{
+    <a asp-page="/ModelComments/Update" asp-route-Id_user="@item.User.Id">
+        <button>@item.Content</button>
+    </a>
+}

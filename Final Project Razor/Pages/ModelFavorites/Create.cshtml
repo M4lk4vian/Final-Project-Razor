@@ -1,0 +1,31 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelFavorites.CreateModel
+@{
+}
+<div>
+
+    <label>Welcome User @Model.Favorite.User.UserName</label>
+    <br /><br /><br />
+    @if (Model.Favorite == null )
+    {
+        <label>Do you want to mark this Recipe as one of your Favorites?</label>
+
+    }
+    <br />
+    <form method="post">
+        <input type="hidden" value="@Model.Favorite.User.Id" name="Id_user" />
+        <input type="hidden" value="@Model.Favorite.Recipe.Id" name="Id_recipe" />
+        @if(Model.Favorite == null )
+        {
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br />
+        }
+        else
+        {
+            <h1>I guess you really like this Recipe but you can only like it once. Go home.</h1>
+        }
+
+
+
+    </form>
+</div>

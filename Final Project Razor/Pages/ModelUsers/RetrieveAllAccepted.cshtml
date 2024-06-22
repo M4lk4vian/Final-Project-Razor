@@ -1,0 +1,13 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelUsers.RetrieveAllAcceptedModel
+@{
+}
+@foreach (var item in Model.Users)
+{
+    <div>
+        <a asp-page="/ModelUsers/UpdateBlockedStatus" asp-route-Id="@item.Id">
+            <button>@item.UserName</button>
+        </a>
+    </div>
+
+}

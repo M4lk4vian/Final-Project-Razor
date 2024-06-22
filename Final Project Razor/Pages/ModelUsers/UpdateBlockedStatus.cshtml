@@ -1,0 +1,30 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelUsers.UpdateBlockedStatusModel
+@{
+}
+<form method="post">
+    <ul>
+        <li>
+            <input type="hidden" value="@Model.User.Id" name="id" />
+            <p>"@Model.User.UserName"</p>
+            <label for="BlockedStatus">Do you want to change this User access?</label>
+            <input asp-for="@Model.User.BlockedStatus" type="checkbox" value="@Model.User.BlockedStatus" name="blockedStatus" />
+
+            @* @if (@Model.User.BlockedStatus == true)
+            {
+
+            }
+            else
+            {
+                <label for="BlockedStatus">Do you want to change this User access?</label>
+                <input type="checkbox" value="@Model.User.BlockedStatus" name="BlockedStatus" id="" />
+            } *@
+
+            
+            <button type="submit" class="btn btn-default-lg"> Edit</button>
+
+        </li>
+    </ul>
+    
+</form>
+

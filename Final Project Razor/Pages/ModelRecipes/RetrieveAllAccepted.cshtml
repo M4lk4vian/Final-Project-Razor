@@ -1,0 +1,13 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelRecipes.RetrieveAllAcceptedModel
+@{
+}
+@foreach (var item in Model.Recipes)
+{
+    <div>
+        <a asp-page="/ModelRecipes/UpdateRecipeBlockedStatus" asp-route-Id="@item.Id">
+            <button>@item.Title</button>
+        </a>
+    </div>
+
+}

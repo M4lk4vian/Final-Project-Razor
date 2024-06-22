@@ -1,0 +1,124 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelUsers.ManagementModel
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+    <header>
+        <div class="search-button">
+            <form class="fa fa-search" action="action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </header>
+    <br />
+    <h2>Welcome to our webiste User @Model.User.UserName</h2> 
+    <br />
+    <ul style="list-style-type: none; display: flex; display: block; " class="btn-group">
+
+        <div style="width:10px;height:auto;display:inline-block;"></div>
+        @if (Model.User.IsAdmin == false)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelRecipes/Create" asp-route-Id="@Model.User.Id">
+                    <button type="button" class="btn btn-secondary">Create a Recipe</button>
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelRecipes/RetrieveAll" asp-route-Id="@Model.User.Id">
+                    <button type="button" class="btn btn-secondary">Show all Recipes</button>
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelFavorites/GetAllByUserId" asp-route-Id_user="@Model.User.Id">
+                    <button type="button" class="btn btn-secondary">Show all Favorites</button>
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelUsers/UpdateUserInfo">
+                    <button type="button" class="btn btn-secondary">Update User Information</button>
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelComments/RetrieveCommentsByUserId">
+                    <button type="button" class="btn btn-secondary">See all of your Comments</button>
+                </a>
+            </li>
+        }
+    </ul>
+
+    <ul style="list-style-type: none; display: flex; display: block; " class="btn-group">
+        @if (Model.User.IsAdmin != false)
+        {
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelIngredients/Create">
+                    <button type="button" class="btn btn-secondary">Create an Ingredient
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelCategories/Create">
+                    <button type="button" class="btn btn-secondary">Create a Category
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelCategories/RetrieveAll">
+                    <button type="button" class="btn btn-secondary">See All Categories
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelUnits/Create">
+                    <button type="button" class="btn btn-secondary">Create a Unit
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelUnits/RetrieveAll">
+                    <button type="button" class="btn btn-secondary">See All Units
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelDifficulties/Create">
+                    <button type="button" class="btn btn-secondary">Rate difficulty
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelDifficulties/RetrieveAll">
+                    <button type="button" class="btn btn-secondary">See All Difficulties
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelUsers/RetrieveAll">
+                    <button type="button" class="btn btn-secondary">Users Access Management
+                </a>
+            </li>
+            <div style="width:10px;height:auto;display:inline-block;"></div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelRecipes/RetrieveAllAccessOnly">
+                    <button type="button" class="btn btn-secondary">Recipes Access Management
+                </a>
+            </li>
+
+
+
+        }
+    </ul>
+
+    
+    
+
+
+</body>
