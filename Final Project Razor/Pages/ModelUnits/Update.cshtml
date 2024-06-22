@@ -1,0 +1,19 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelUnits.UpdateModel
+@{
+}
+
+<form>
+    <ul>
+        <li>
+            <ul>
+                <input type="hidden" value=@Model.Unit.Id name="Id">
+                <li>
+                    <label>@Model.Unit.UnitName</label>
+                    <input type="text" placeholder=@Model.Unit.UnitName name="" id=""><br>
+
+                </li>
+                <button type="submit" class="btn btn-default-lg">Edit</button>
+        </li>
+    </ul>
+</form>

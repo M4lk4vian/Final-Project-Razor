@@ -1,0 +1,22 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelComments.UpdateModel
+@{
+}
+
+<label for="comment">Tell us what you think of this recipe:</label>
+<form method="post">
+    <ul>
+        <li>
+            <input type="hidden" value="@Model.comment.Id" name="Id">
+            <input type="text" placeholder="@Model.comment.Content" name="Id_comment" id=""><br>
+            <input type="text" value="@Model.comment.Recipe.Id" name="Id_recipe"
+            <input type="text" value="@Model.comment.User.Id" name="Id_user"
+
+
+
+        </li>
+    </ul>
+
+    <button type="submit" class="btn btn-default-lg"> Edit</button>
+
+</form>

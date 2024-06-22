@@ -1,0 +1,9 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelIngredients.RetrieveAllModel
+@{
+}
+
+@foreach (var item in Model.ingredients)
+{
+    <div>@item.IngredientName</div>
+}

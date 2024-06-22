@@ -1,0 +1,21 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelComments.CreateModel
+@{
+}
+
+
+<div>
+    <label>What do you think of this Recipe?</label><br />
+    <label>Welcome User @Model.Comment.User.UserName</label>
+    <br /><br /><br />
+
+    <form method="post">
+        <input type="hidden" value="@Model.Comment.Recipe.Id" name="Id_recipe" />
+        <input type="hidden" value="@Model.Comment.User.Id" name="Id_user" />
+        <label id="Content">Please comment here:</label> 
+        <input name="Content" />
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br />
+    </form>
+</div>

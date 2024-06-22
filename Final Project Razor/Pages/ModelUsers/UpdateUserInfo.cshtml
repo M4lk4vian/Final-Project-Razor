@@ -1,0 +1,17 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelUsers.UpdateUserInfoModel
+@{
+}
+<form method="post">
+    <div class="w-25 p-3" style="background-color: #eee">
+        <input type="hidden" value="@Model.User.Id" name="id" />
+        <label>Do you want to change your UserName?</label>
+        <input type="text" value="@Model.User.UserName" name="UserName" />
+        <label>Do you want to change your Password?</label>
+        <input type="password" value="@Model.User.Password" name="Password"/>
+        <label>Do you want to change your Admin status?</label>
+        <input asp-for="@Model.User.IsAdmin" type="checkbox" value="@Model.User.IsAdmin" name="IsAdmin" />
+        <button type="submit" class="btn btn-default-lg"> Edit</button>
+    </div>
+
+</form>

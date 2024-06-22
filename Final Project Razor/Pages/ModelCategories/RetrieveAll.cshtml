@@ -1,0 +1,20 @@
+﻿@page
+@model CategoriesModel
+@{
+}
+
+@foreach (var item in Model.Categories)
+{
+    <div>
+
+        <a asp-page ="/ModelCategories/Update" asp-route-Id="@item.Id">
+            <button>@item.CategoryName</button>
+            
+        </a>
+            
+        
+        
+    </div>
+    
+}
+

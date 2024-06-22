@@ -1,0 +1,18 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelDifficulties.RetrieveAllModel
+@{
+
+}
+
+@foreach (var item in Model.Difficulties)
+{
+    <div>
+
+        <a asp-page="/ModelDifficulties/Update" asp-route-id="@item.Id">
+            <button>@item.DifficultyName</button>
+
+        </a>
+
+    </div>
+
+}

@@ -1,0 +1,19 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelIngredientsRecipes.RetrieveIngredientsByRecipeIdModel
+@{
+}
+@foreach (var item in Model.IngredientsRecipes)
+{
+    <div>@item.Ingredient.IngredientName: @item.Quantity @item.Unit.UnitName </div>
+}
+@* <div>
+
+    <a asp-page="/ModelIngredientsRecipes/RetrieveIngredientsByRecipeId" asp-route-id="@Model.IngredientsRecipe[0].Recipe.Id">
+        <button>@Model.IngredientsRecipes[0].Recipe</button>
+
+    </a>
+
+
+
+</div>
+ *@

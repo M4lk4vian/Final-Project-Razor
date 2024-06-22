@@ -1,0 +1,23 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelFavorites.UpdateModel
+@{
+}
+
+@*NOT CURRENTLY WORKING*@
+<label for="Recipe">Change one of your Recipes</label>
+<form method="post">
+    <li>
+        <label>Please select the Favorite Recipe you want to change.</label>
+        <select name="recipe" id="">
+            @foreach (var name in Model.Recipes)
+            {
+                <option value="@name.Id">@name.Title</option>
+
+            }
+        </select>
+        <input type="text" placeholder="@Model.Recipe.Id" name="Recipe" id="" />
+    <input type="hidden" value=@Model.Recipe.Id name="Id">
+
+    <button type="submit" class="btn btn-default-lg"> Edit</button>
+
+</form>

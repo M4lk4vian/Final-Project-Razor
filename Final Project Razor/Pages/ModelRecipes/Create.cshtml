@@ -1,0 +1,52 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelRecipes.CreateModel
+@{
+}
+<div>
+    <label>Create your new Recipe here.</label><br />
+
+    <br /><br /><br />
+
+    <table>
+
+        <form method="post">
+            <li>
+                <label id="Name">Name your recipe:</label>
+                <input name="title" />
+            </li>
+            <li>
+                <label id="Preparation Method">What is the method to do your Recipe?</label>
+                <input name="PrepMethod" />
+            </li>
+            <li>
+                <label id="Preparation Time">How much time until your recipe is done?</label>
+                <input name="PrepTime" />
+            </li>
+            <li>
+                <select name="category" id="">
+                    @foreach(var name in Model.Categories)
+                    {
+                        <option value="@name.Id">@name.CategoryName</option>
+                    }
+                </select>
+                <label>Please select the category that your Recipe belongs to.</label>
+            </li>
+            <li>
+                <select name="difficulty" id="">
+                    @foreach (var name in Model.Difficulties)
+                    {
+                        <option value="@name.Id">@name.DifficultyName</option>
+                    }
+                </select>
+                <label>Please select the difficulty of your Recipe</label>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </li>
+            <br />
+        </form>
+
+
+    </table>
+
+</div>

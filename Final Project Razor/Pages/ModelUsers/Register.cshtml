@@ -1,0 +1,24 @@
+﻿@page
+@model Final_Project_Razor.Pages.User.RegisterModel
+@{
+}
+<div>
+ 
+
+    <br /><br /><br />
+
+    <form method="post">
+        <div class="w-25 p-3" style="background-color: #eee">
+            <label id="UserName">Provide the UserName:</label>
+            <input name="UserName" required />
+            <label id="Password">Insert the Password</label>
+            <input name="Password" required />
+            <label id="IsAdmin">Is this User an Admin?</label> 
+            <input asp-for="@Model.User.IsAdmin" type="checkbox" name="isAdmin" />
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            
+        </div>
+        
+    </form>
+</div>

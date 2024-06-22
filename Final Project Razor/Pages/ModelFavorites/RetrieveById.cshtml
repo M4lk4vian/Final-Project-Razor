@@ -1,0 +1,20 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelFavorites.RetrieveByIdModel
+@{
+}
+
+
+<label>User @Model.User.UserName Favorite's Recipes</label>
+<a asp-page="/ModelFavorites/Update" asp-route-Id_recipe="@Model.Favorite.Id"></a>
+<ul>
+    <li>@Model.Recipe.Title</li>
+    <li>@Model.Recipe.PrepMethod</li>
+</ul>
+<ul style="display: inline">
+    <li>@Model.Recipe.PrepTime, @Model.Recipe.Difficulty.DifficultyName, @Model.Recipe.Category.CategoryName</li>
+
+    @foreach (var ing in Model.Recipe.IngredientsRecipes)
+    {
+        <li style="display: inline">@ing.Ingredient.IngredientName, @ing.Quantity, @ing.Unit.UnitName</li>
+    }
+</ul>

@@ -1,0 +1,55 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelIngredientsRecipes.CreateModel
+@{
+}
+<div>
+    <label>What Ingredient you would like to put in the Recipe?</label><br />
+ 
+    <br /><br /><br />
+
+     
+
+
+    <form id = "CriaListaDeIngredientes" method="post">
+        <input type="hidden" value=@Model.Recipe.Id name="Recipe">
+        <li>
+            <select name="ingredient" id="">
+                @foreach (var name in Model.Ingredients)
+                {
+                    <option value="@name.Id">@name.IngredientName</option>
+                }
+            </select>
+            <label id="Description">Select the ingredient name:</label>
+        </li>
+
+        <li>
+            <label id="Quantity">Provide the ammount of this ingredient is needed:</label>
+            <input name="quantity" required="required" />
+        </li>
+
+        <li>
+            <select name="unit" id="">
+                @foreach (var name in Model.Units)
+                {
+                    <option value="@name.Id">@name.UnitName</option>
+                }
+            </select>
+            <label id="Unit">Provide the unit of measure for this recipe:</label>
+        </li>
+        <ul>          
+            <button type="submit" asp-page-handler="CreateIngredients" class="btn btn-primary">Insert the Ingredient</button>
+            @*<a type="submit" class="nav-link text-blue" asp-page-handler="CreateIngredients" asp-area="" asp-page="/ModelIngredientsRecipes/Create">Add Ingredient</a>*@
+
+        </ul>
+
+        <br />
+
+    </form>
+    <br />
+    <ul class="nav-item">
+        <p> When you don't have more ingredients to insert, click below </p>
+        <button>
+            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home Page</a>
+        </button>
+    </ul>     
+</div>

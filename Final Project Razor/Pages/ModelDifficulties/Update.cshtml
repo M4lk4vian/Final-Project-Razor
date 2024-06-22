@@ -1,0 +1,13 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelDifficulties.UpdateModel
+@{
+}
+<label for="difficulty">What difficulty level you would like to change?:</label>
+<form method="post">
+
+    <input type="text" placeholder=@Model.difficulty.DifficultyName name="DifficultyName" id=""><br>
+    <input type="hidden" value=@Model.difficulty.Id name="Id">
+
+    <button type="submit" class="btn btn-default-lg"> Edit</button>
+
+</form>

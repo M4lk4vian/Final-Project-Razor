@@ -1,0 +1,31 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelFavorites.GetAllByUserIdModel
+@{
+}
+@foreach (var item in Model.Favorites)
+{
+    <div>
+        @if (Model.Favorites != null)
+        {
+            <a asp-page="/ModelFavorites/Update" asp-route-Id="@item.User.Id">
+                <button>@item.Recipe.Title</button>
+
+            </a>
+        }
+        else
+        {
+            <p>At the moment you dont have any Favorite Recipes</p>
+            <br />
+            <a asp-area="" asp-page="/ModelRecipes/RetrieveAll">
+                <button type="button" class="btn btn-secondary">Click here to view all Recipes</button>
+            </a>
+
+        }
+
+
+
+    </div>
+
+
+
+}

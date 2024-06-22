@@ -1,0 +1,10 @@
+﻿@page
+@model Final_Project_Razor.Pages.ModelUnits.RetrieveAllModel
+@{
+}
+
+@foreach (var item in Model.Units)
+{
+    <a asp-page="/ModelRecipes/Update" asp-route-Id="@item.Id"><button>@item.UnitName</button></a>
+    <div>@item.UnitName</div>
+}
