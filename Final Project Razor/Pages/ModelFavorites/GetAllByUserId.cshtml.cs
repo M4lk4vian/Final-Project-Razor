@@ -16,8 +16,14 @@ namespace Final_Project_Razor.Pages.ModelFavorites
 
         public void OnGet(int Id)
         {
-
-            User = JsonSerializer.Deserialize<Users>(HttpContext.Session.GetString("user"));
+                Favorites = new List<Favorites>();
+                return;
+            }
+            Users tempUser = JsonSerializer.Deserialize<Users>(sessionUser);
+            Console.WriteLine($"DEBUG tempUser.UserId: {tempUser?.UserId}");
+            User = _usersServices.RetrieveById(tempUser.UserId);
+            Favorites = _favoritesServices.GetAllByUserId(User.UserId);
+            Console.WriteLine($"DEBUG Favorites count: {Favorites.Count}");
 
             Favorites = _favoritesServices.GetAllByUserId(User.Id);
         }
