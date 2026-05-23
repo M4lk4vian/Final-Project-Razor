@@ -43,12 +43,12 @@ namespace Final_Project_Razor.Pages.ModelRecipes
             ingredientsRecipe.Ingredient = new Ingredients();
             ingredientsRecipe.Unit = new Units();
 
-            recipe.Id = Convert.ToInt32(Request.Form["Id"]);
+            recipe.RecipeId = Convert.ToInt32(Request.Form["RecipeId"]);
             recipe.Title = Convert.ToString(Request.Form["Title"]);
             recipe.PrepMethod = Convert.ToString(Request.Form["PrepMethod"]);
             recipe.PrepTime = Convert.ToString(Request.Form["PrepTime"]);
-            recipe.Category.Id = Convert.ToInt32(Request.Form["Category"]);
-            recipe.Difficulty.Id = Convert.ToInt32(Request.Form["Difficulty"]);
+            recipe.Category.CategoryId = Convert.ToInt32(Request.Form["Category"]);
+            recipe.Difficulty.DifficultyId = Convert.ToInt32(Request.Form["Difficulty"]);
 
             recipe = _recipesServices.Create(recipe);
 

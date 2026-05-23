@@ -5,9 +5,8 @@
 <label for="ingredientsRecipe">What do you want to change about these Ingredients of this Recipe?</label>
 <form method="post">
 
-    <input type="text" placeholder=@Model.ingredientsRecipe.Description name="Description" id=""><br>
-    <input type="hidden" value=@Model.ingredientsRecipe.Id name="Id">
+    <input type="text" placeholder=@Model.ingredientsRecipe.Ingredient.IngredientName name="IngredientName" id=""><br>
+    <input type="hidden" value=@Model.ingredientsRecipe.IngredientRecipeId name="Id">
     <input type="text" placeholder=@Model.ingredientsRecipe.Quantity name="quantity" id=""><br>
-    <input type="text" placeholder=@Model.ingredientsRecipe.Description name="Description" id=""><br>
     <button type="submit" class="btn btn-default-lg"> Edit</button>
 </form>

@@ -17,8 +17,6 @@ namespace Final_Project_Razor.Pages.ModelUsers
 
         public Users User { get; set; } //No OnGet nunca se mete objectos, apenas estas propriedades com get e set
 
-        public int Id { get; set; }
-
         public string UserName { get; set; }
         [BindProperty]
         public string Password { get; set; }
@@ -27,11 +25,11 @@ namespace Final_Project_Razor.Pages.ModelUsers
 
         public Categories Category { get; set; }
 
-        public void OnGet(int Id_user)
+        public void OnGet(int UserId)
         {
 
             User = JsonSerializer.Deserialize<Users>(HttpContext.Session.GetString("user")); ;
-            Id_user = User.Id;
+            UserId = User.UserId;
         }
 
 

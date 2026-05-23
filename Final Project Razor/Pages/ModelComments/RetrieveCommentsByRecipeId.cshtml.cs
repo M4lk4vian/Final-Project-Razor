@@ -20,13 +20,13 @@ namespace Final_Project_Razor.Pages.ModelComments
         public Recipes Recipe { get; set; }
 
         public Users User { get; set; }
-        public void OnGet(int Id_recipe, int Id, int Id_user)
+        public int UserId { get; set; }
+        public void OnGet(int RecipeId)
         {
-            Comments = _commentsServices.RetrieveCommentsByRecipeId(Id_recipe);
-            Recipe = _recipesServices.RetrieveById(Id);
-            Id = Convert.ToInt32(_memoryCache.Get("userKey"));
-            User = _usersServices.RetrieveById(Id);
-            User.Id = Id_user;
+            UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
+            User = _usersServices.RetrieveById(UserId);
+            Recipe = _recipesServices.RetrieveById(RecipeId);
+            Comments = _commentsServices.RetrieveCommentsByRecipeId(RecipeId);            
         }
     }
 }

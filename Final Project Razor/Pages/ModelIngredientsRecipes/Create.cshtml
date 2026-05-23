@@ -11,15 +11,15 @@
 
 
     <form id = "CriaListaDeIngredientes" method="post">
-        <input type="hidden" value=@Model.Recipe.Id name="Recipe">
+        <input type="hidden" value=@Model.Recipe.RecipeId name="Recipe">
         <li>
             <select name="ingredient" id="">
                 @foreach (var name in Model.Ingredients)
                 {
-                    <option value="@name.Id">@name.IngredientName</option>
+                    <option value="@name.IngredientId">@name.IngredientName</option>
                 }
             </select>
-            <label id="Description">Select the ingredient name:</label>
+            <label id="IngredientName">Select the ingredient name:</label>
         </li>
 
         <li>
@@ -31,15 +31,13 @@
             <select name="unit" id="">
                 @foreach (var name in Model.Units)
                 {
-                    <option value="@name.Id">@name.UnitName</option>
+                    <option value="@name.UnitId">@name.UnitName</option>
                 }
             </select>
             <label id="Unit">Provide the unit of measure for this recipe:</label>
         </li>
         <ul>          
             <button type="submit" asp-page-handler="CreateIngredients" class="btn btn-primary">Insert the Ingredient</button>
-            @*<a type="submit" class="nav-link text-blue" asp-page-handler="CreateIngredients" asp-area="" asp-page="/ModelIngredientsRecipes/Create">Add Ingredient</a>*@
-
         </ul>
 
         <br />

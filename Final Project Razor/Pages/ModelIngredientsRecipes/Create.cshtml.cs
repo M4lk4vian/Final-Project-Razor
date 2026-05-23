@@ -36,12 +36,11 @@ namespace Final_Project_Razor.Pages.ModelIngredientsRecipes
             ingredientsRecipe.Recipe = new Recipes();
             ingredientsRecipe.Ingredient = new Ingredients();
             ingredientsRecipe.Unit = new Units();
-            ingredientsRecipe.Recipe.Id = Convert.ToInt32(Request.Form["Recipe"]);
-            ingredientsRecipe.Ingredient.Id = Convert.ToInt32(Request.Form["Ingredient"]);
+            ingredientsRecipe.Recipe.RecipeId = Convert.ToInt32(Request.Form["Recipe"]);
+            ingredientsRecipe.Ingredient.IngredientId = Convert.ToInt32(Request.Form["Ingredient"]);
             ingredientsRecipe.Quantity = Convert.ToDouble(Request.Form["Quantity"]);
-            ingredientsRecipe.Unit.Id = Convert.ToInt32(Request.Form["Unit"]);
-            ingredientsRecipe.Description = Convert.ToString("Description");
-
+            ingredientsRecipe.Unit.UnitId = Convert.ToInt32(Request.Form["Unit"]);
+            
             _ingredientsRecipesServices.Create(ingredientsRecipe);
 
             Recipes lastInsertedId = _recipesServices.FindLastInsertedRecipe();

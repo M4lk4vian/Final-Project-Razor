@@ -10,10 +10,10 @@
     <br /><br /><br />
 
     <form method="post">
-        <input type="hidden" value="@Model.Comment.Recipe.Id" name="Id_recipe" />
-        <input type="hidden" value="@Model.Comment.User.Id" name="Id_user" />
-        <label id="Content">Please comment here:</label> 
-        <input name="Content" />
+        <input type="hidden" value="@Model.Comment.Recipe.RecipeId" name="Id_recipe" />
+        <input type="hidden" value="@Model.Comment.User.UserId" name="Id_user" />
+        <label for="Content">Please comment here:</label> 
+        <textarea name="Content" id="Content" rows="4" placeholder="Write your comment here..."></textarea>
 
         <button type="submit" class="btn btn-primary">Submit</button>
         <br />

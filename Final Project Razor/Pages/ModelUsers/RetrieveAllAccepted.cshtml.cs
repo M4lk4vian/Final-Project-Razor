@@ -14,14 +14,12 @@ namespace Final_Project_Razor.Pages.ModelUsers
 
         private readonly UsersServices _usersServices = new UsersServices();
 
-        public int Id;
-
         public int UserId;
 
         public Users User { get; set; }
         public List<Users> Users { get; set; }
 
-        public void OnGet(int Id, int UserId)
+        public void OnGet(int UserId)
         {
             UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
             User = _usersServices.RetrieveById(UserId);

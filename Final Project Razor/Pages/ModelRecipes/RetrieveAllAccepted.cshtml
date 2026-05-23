@@ -2,12 +2,19 @@
 @model Final_Project_Razor.Pages.ModelRecipes.RetrieveAllAcceptedModel
 @{
 }
-@foreach (var item in Model.Recipes)
+@if (Model.Recipes != null)
 {
-    <div>
-        <a asp-page="/ModelRecipes/UpdateRecipeBlockedStatus" asp-route-Id="@item.Id">
-            <button>@item.Title</button>
-        </a>
-    </div>
+    @foreach (var item in Model.Recipes)
+    {
+        <div>
+            <a asp-page="/ModelRecipes/UpdateRecipeBlockedStatus" asp-route-RecipeId="@item.RecipeId">
+                <button>@item.Title</button>
+            </a>
+        </div>
 
+    }
+}
+else
+{
+    <p>We are out of Recipes. Hope you are not starving</p>
 }

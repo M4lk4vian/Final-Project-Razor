@@ -2,9 +2,17 @@
 @model Final_Project_Razor.Pages.ModelComments.RetrieveCommentsByUserIdModel
 @{
 }
-@foreach(var item in Model.Comments)
+
+@if(Model.Comments != null)
 {
-    <a asp-page="/ModelComments/Update" asp-route-Id_user="@item.User.Id">
-        <button>@item.Content</button>
-    </a>
+    @foreach (var item in Model.Comments)
+    {
+        <a asp-page="/ModelComments/Update" asp-route-UserId="@item.User.UserId">
+            <button>@item.Content</button>
+        </a>
+    }
+}
+else
+{
+    <p>This user hasn't commented any recipe yet</p>
 }

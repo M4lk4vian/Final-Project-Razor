@@ -5,6 +5,6 @@
 
 @foreach (var item in Model.Units)
 {
-    <a asp-page="/ModelRecipes/Update" asp-route-Id="@item.Id"><button>@item.UnitName</button></a>
+    <a asp-page="/ModelRecipes/Update" asp-route-UnitId="@item.UnitId"><button>@item.UnitName</button></a>
     <div>@item.UnitName</div>
 }

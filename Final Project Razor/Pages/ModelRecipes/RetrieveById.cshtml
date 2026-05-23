@@ -1,99 +1,121 @@
 ﻿@page
 @model Final_Project_Razor.Pages.ModelRecipes.RetrieveByIdModel
+@Html.AntiForgeryToken()
 @{
 }
-@if (Model.Recipe.BlockedStatus != true)
+@if (Model.Recipe != null)
 {
-
-    <ul style="list-style-type: none;">
-        <h3>@Model.Recipe.Title</h3>
-
-        <li>@Model.Recipe.PrepMethod</li>
-        <br />
-        <li>Ingredients:</li>
-
-        @foreach (var item in Model.IngredientsRecipes)
-        {
-            <div style="display: inline; list-style-type: none; position:relative; left:80px;">
-                @item.Ingredient.IngredientName: @item.Quantity @item.Unit.UnitName
-            </div>
-        }
-        
-    </ul>
-    <ul style="display: inline; list-style-type: none; position:relative; left:80px;">
-        <li>Preparation Time: @Model.Recipe.PrepTime</li>
-        <li>Difficulty: @Model.Recipe.Difficulty.DifficultyName</li>
-        <li>Category: @Model.Recipe.Category.CategoryName</li>
-        @if (Model.Rating.Rating == 0.0)
-        {
-            <p>Average Rating: N.A</p>
-
-        }
-        else
-        {
-            <p>Average Rating: @Model.Average</p>
-
-        }
-    </ul>
-    <ul style="list-style-type: none;">
-        <li>
-            @if (Model.Comments != null)
+    @if (Model.Recipe.BlockedStatus != true && Model.User.IsAdmin != true)
+    {
+        <ul style="list-style-type: none;">
+            <h3>@Model.Recipe.Title</h3>
+            <li>@Model.Recipe.PrepMethod</li>
+            <br />
+            <li>Ingredients:</li>
+            @foreach (var item in Model.IngredientsRecipes)
             {
-                @foreach (var comment in Model.Comments)
-                {
-                    @comment.Content
-                }
+                <div style="display: inline; list-style-type: none; position:relative; left:80px;">
+                    @item.Ingredient.IngredientName: @item.Quantity @item.Unit.UnitName
+                </div>
+            }
+        </ul>
+        <ul style="display: inline; list-style-type: none; position:relative; left:80px;">
+            <li>Preparation Time: @Model.Recipe.PrepTime</li>
+            <li>Difficulty: @Model.Recipe.Difficulty.DifficultyName</li>
+            <li>Category: @Model.Recipe.Category.CategoryName</li>
+            @if (Model.Rating == null || Model.Rating.Rating == 0.0)
+            {
+                <p>Average Rating: N.A</p>
             }
             else
             {
-                <p>You haven't commented this recipe yet</p>
+                <p>Average Rating: @Model.Average</p>
             }
+        </ul>
 
-
-        </li>
-    </ul>
-        
-    {
-        <ul style="list-style-type: none; class="btn-group">
-            <div style="width:10px;height:auto;display:inline-block;"></div>
-            <li>
-                <a asp-area="" asp-page="/ModelFavorites/Create" asp-route-Id="@Model.Recipe.Id">
-                    <button type="button" class="btn btn-secondary">Favorite Recipe</button>
+        <div style="display:flex; flex-direction:column; gap:10px; width:fit-content;">
+            <div style="display:flex; align-items:center; gap:10px">
+                <button id="favBtn" onclick="toggleFavorite()"
+                    style="background:none; border:none; cursor:pointer; font-size:2rem;">
+                    ☆
+                </button>
+                <a asp-page="/ModelFavorites/GetAllByUserId">
+                    <button type="button" class="btn btn-secondary">My Favorites</button>
                 </a>
-
-            </li>
-            <div style="width:10px;height:auto;display:inline-block;"></div>
-            <li>
-                <a asp-area="" asp-page="/ModelFavorites/Delete" asp-route-Id="@Model.Recipe.Id">
-                    <button type="button" class="btn btn-secondary">Delete Favorite Recipe</button>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px">
+                <a asp-area="" asp-page="/ModelComments/Create" asp-route-RecipeId="@Model.Recipe.RecipeId"
+                   style="font-size:2rem; text-decoration:none;">
+                    ✍️
                 </a>
+                @if (Model.Comments != null)
+                {
+                    <a asp-area="" asp-page="/ModelComments/RetrieveCommentsByRecipeId"
+                       asp-route-RecipeId="@Model.Recipe.RecipeId">
+                        <button type="button" class="btn btn-secondary">Your Comments of this Recipe</button>
+                    </a>
+                }
+                else
+                {
+                    <p>You haven't commented this recipe yet</p>
+                }
+            </div>
+        </div>
+
+        <script>
+            const recipeId = @Model.Recipe.RecipeId;
+            const favBtn = document.getElementById("favBtn");
+            let isFavorite = false;
+            favBtn.textContent = isFavorite ? "★" : "☆";
+            async function toggleFavorite() {
+                const response = await fetch("?handler=ToggleFavorite", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "RequestVerificationToken": document.querySelector(
+                            'input[name="__RequestVerificationToken"]').value
+                    },
+                    body: `ToggleRecipeId=${recipeId}`
+                });
+                const data = await response.json();
+                if (data.success) {
+                    isFavorite = data.isFavorite;
+                    favBtn.textContent = isFavorite ? "★" : "☆";
+                } else {
+                    alert("Erro: " + data.message);
+                }
+            }
+        </script>
+
+        <ul style="list-style-type: none;">
+            <li>
+                @if (Model.Comments != null)
+                {
+                    @foreach (var comment in Model.Comments)
+                    {
+                        @comment.Content
+                    }
+                }
+                else
+                {
+                    <p>You haven't commented this recipe yet</p>
+                }
             </li>
         </ul>
-        <br />
+
         <ul style="list-style-type: none;" class="btn-group">
             <li>
-                <a asp-area="" asp-page="/ModelRatings/Create" asp-route-Id="@Model.Recipe.Id">
+                <a asp-area="" asp-page="/ModelRatings/Create" asp-route-RecipeId="@Model.Recipe.RecipeId">
                     <button type="button" class="btn btn-secondary">Rate this Recipe</button>
                 </a>
             </li>
-            <div style="width:10px;height:auto;display:inline-block;"></div>
-            <li>
-                <a asp-area="" asp-page="/ModelComments/Create" asp-route-Id="@Model.Recipe.Id">
-                    <button type="button" class="btn btn-secondary">Comment a Recipe</button>
-                </a>
-            </li>
-            <div style="width:10px;height:auto;display:inline-block;"></div>
-            <li>
-                <a asp-area="" asp-page="/ModelComments/RetrieveCommentsByRecipeId">
-                    <button type="button" class="btn btn-secondary">Your Comments of this Recipe</button>
-                </a>
-            </li>
         </ul>
+
         <br />
         <ul style="list-style-type: none;">
             <li>
                 <p>If you would like to propose any change to our Recipes, please feel free to do so, down below. We would be happy to consider them!</p>
-                <a asp-area="" asp-page="/ModelRecipes/Update" asp-route-Id="@Model.Recipe.Id">
+                <a asp-area="" asp-page="/ModelRecipes/Update" asp-route-RecipeId="@Model.Recipe.RecipeId">
                     <Button type="button" class="btn btn-secondary">Recipe Edit</Button>
                 </a>
             </li>
@@ -102,7 +124,9 @@
 }
 else
 {
-    <h1>This Recipe is currently unavailable due to some Shenanigans</h1>
-    <h1>Beg to the Admin to accept your Recipe... if you can find him!</h1>
+    <p>We are out of recipes. Hope you are not starving.</p>
 }
+
+
+
 

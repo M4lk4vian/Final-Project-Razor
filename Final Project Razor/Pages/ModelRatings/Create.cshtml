@@ -4,36 +4,23 @@
 }
 <div>
     <label>How would you rate this recipe?</label><br />
-
     <br /><br /><br />
-
     <form method="post">
-        <input type="hidden" value="@Model.Rating.Recipe.Id" name="Id" id=""/>
-        <input type="hidden" value="@Model.Rating.User.Id" name="UserId" id="" />
-        
-        <label id="Rating">Provide the rating for this recipe between 1 and 10:</label>
-        @if (Model.Rating.Rating > 0 || Model.Rating.Rating < 10)
-        {
-            <input name="Rating" />
-            <button type="submit" class="btn btn-primary">Submit</button>
-        }
-        else
+        <input type="hidden" value="@Model.Rating.Recipe.RecipeId" name="RecipeId" id=""/>
+        <input type="hidden" value="@Model.Rating.User.UserId" name="UserId" id="" />
+        <label for="Rating">Provide the rating for this recipe between 0 and 10:</label>
+        <input name="Rating" />
+        <button type="submit" class="btn btn-primary">Submit</button>
+        @if (Request.Query["error"] == "true")
         {
             <h1>What I said? Rate this Recipe between 1 and 10! No cookies for you!</h1>
             <h2>Go back and try again, do it like you're told this time!</h2>
         }
-        
         <br />
         <br /><br /><br />
         <li>
             <p>This recipe has this average rating:</p>
-            <P>@Model.Rating.Rating</P>
-            
-
+            <p>@Model.Rating.Rating</p>
         </li>
-
-
     </form>
-
-
 </div>

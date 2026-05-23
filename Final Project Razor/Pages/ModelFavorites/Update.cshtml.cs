@@ -19,9 +19,9 @@ namespace Final_Project_Razor.Pages.ModelFavorites
 
         public Recipes Recipe { get; set; }
         public List<Recipes> Recipes { get; set; }
-        public void OnGet(int id)
+        public void OnGet(int FavoriteId)
         {
-            Favorite = _favoritesServices.RetrieveById(id);
+            Favorite = _favoritesServices.RetrieveById(FavoriteId);
             UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
             User = _usersServices.RetrieveById(UserId);
             Recipes = _recipesServices.RetrieveAll();
@@ -32,8 +32,8 @@ namespace Final_Project_Razor.Pages.ModelFavorites
             Favorites favorite = new Favorites();
             favorite.User = new Users();
             favorite.Recipe = new Recipes();
-            favorite.User.Id = Convert.ToInt32(Request.Form["id"]);
-            favorite.Recipe.Id = Convert.ToInt32(Request.Form["title"]);
+            favorite.User.UserId = Convert.ToInt32(Request.Form["userId"]);
+            favorite.Recipe.RecipeId = Convert.ToInt32(Request.Form["title"]);
 
             favorite = _favoritesServices.Update(favorite);
 

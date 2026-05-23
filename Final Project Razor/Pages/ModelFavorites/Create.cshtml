@@ -13,8 +13,8 @@
     }
     <br />
     <form method="post">
-        <input type="hidden" value="@Model.Favorite.User.Id" name="Id_user" />
-        <input type="hidden" value="@Model.Favorite.Recipe.Id" name="Id_recipe" />
+        <input type="hidden" value="@Model.Favorite.User.UserId" name="Id_user" />
+        <input type="hidden" value="@Model.Favorite.Recipe.RecipeId" name="Id_recipe" />
         @if(Model.Favorite == null )
         {
             <button type="submit" class="btn btn-primary">Submit</button>

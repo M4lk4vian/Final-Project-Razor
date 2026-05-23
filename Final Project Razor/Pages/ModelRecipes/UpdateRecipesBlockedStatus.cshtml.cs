@@ -14,9 +14,9 @@ namespace Final_Project_Razor.Pages.ModelRecipes
         private readonly RecipesServices _recipesServices = new RecipesServices();
         private readonly UsersServices _usersServices = new UsersServices();
 
-        public int Id;
+        public int RecipeId { get; set; }
 
-        public int UserId;
+        public int UserId { get; set; }
 
         public bool BlockedStatus { get; set; }
 
@@ -29,11 +29,11 @@ namespace Final_Project_Razor.Pages.ModelRecipes
         public void OnGet(int Id)
         {
             Recipe = new Recipes();
-            Recipe.Id = Id;
+            Recipe.RecipeId = RecipeId;
             Recipes = _recipesServices.RetrieveAll();
             UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
             User = _usersServices.RetrieveById(UserId);
-            User.Id = UserId;
+            User.UserId = UserId;
         }
 
         public IActionResult OnPost()

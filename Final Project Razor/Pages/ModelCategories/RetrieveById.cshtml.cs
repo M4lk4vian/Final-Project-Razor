@@ -14,7 +14,7 @@ namespace Final_Project_Razor.Pages.ModelCategories
         private readonly UsersServices _usersServices = new UsersServices();
 
 
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
 
         public string CategoryName {get; set;}
 
@@ -23,8 +23,8 @@ namespace Final_Project_Razor.Pages.ModelCategories
         Users User { get; set; }
         public void OnGet(int UserId)
         {
-            User.Id = UserId;
-            Category = _categoriesServices.RetrieveById(Category.Id);
+            User.UserId = UserId;
+            Category = _categoriesServices.RetrieveById(Category.CategoryId);
             UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
             User = _usersServices.RetrieveById(UserId);
         }

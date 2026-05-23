@@ -17,17 +17,17 @@ namespace Final_Project_Razor.Pages.ModelRatings
         public Ratings Rating { get; set; }
 
 
-        //IMPORTANT NEEDS TO RECEIVE RECIPE ID VIA URI
-        //LIKE THIS ModelRatings/Create?Id={Model.Recipe.Id}
-        public void OnGet(int Id)
+        public void OnGet(int RecipeId)
         {
             Rating = new Ratings();
             Rating.User = new Users();
             Rating.Recipe = new Recipes();
 
 
-            Rating.User = JsonSerializer.Deserialize<Users>(HttpContext.Session.GetString("user"));
-            Rating.Recipe.Id = Id;
+            string sessionUser = HttpContext.Session.GetString("user");
+            if (sessionUser != null)
+                Rating.User = JsonSerializer.Deserialize<Users>(sessionUser);
+            Rating.Recipe.RecipeId = RecipeId;
         }
 
         public IActionResult OnPost()
@@ -35,14 +35,19 @@ namespace Final_Project_Razor.Pages.ModelRatings
             Rating = new Ratings();
             Rating.User = new Users();
             Rating.Recipe = new Recipes();
-            //implementar  if com x < 10 || x > 0 if not Redirect to the same page
-            Rating.Rating = Convert.ToInt32(Request.Form["Rating"]);
-            Rating.Recipe.Id = Convert.ToInt32(Request.Form["Id"]);
-            Rating.User.Id = Convert.ToInt32(Request.Form["userId"]);
+            if (!int.TryParse(Request.Form["Rating"], out int ratingValue))
+                return Redirect($"/ModelRatings/Create?RecipeId={Rating.Recipe.RecipeId}&error=true");
+            Rating.Rating = ratingValue;
+            Rating.Recipe.RecipeId = Convert.ToInt32(Request.Form["RecipeId"]);
+            Rating.User.UserId = Convert.ToInt32(Request.Form["UserId"]);
 
+            int recipeId = Rating.Recipe.RecipeId;
             Rating = _ratingsServices.Create(Rating);
 
-            return Redirect($"/ModelRecipes/RetrieveById?Id={Rating.Recipe.Id}"); 
+            if (Rating == null)
+                return Redirect($"/ModelRatings/Create?RecipeId={recipeId}&error=true");
+
+            return Redirect($"/ModelRecipes/RetrieveById?recipeId={recipeId}");
         }
 
     }

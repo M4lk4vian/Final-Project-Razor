@@ -27,8 +27,8 @@ namespace Final_Project_Razor.Pages.ModelDifficulties
             if (_memoryCache != null)
             {
 
-                int id = Convert.ToInt32(_memoryCache.Get("userKey"));
-                User = _usersServices.RetrieveById(id);
+                int userId = Convert.ToInt32(_memoryCache.Get("userKey"));
+                User = _usersServices.RetrieveById(userId);
             }
         }
 

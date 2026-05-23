@@ -13,9 +13,9 @@ namespace Final_Project_Razor.Pages.ModelRatings
 
         public Ratings Rating = new Ratings();
 
-        public void OnGet(int id)
+        public void OnGet(int RatingId)
         {
-            Rating = _ratingsServices.RetrieveById(id);
+            Rating = _ratingsServices.RetrieveById(RatingId);
             Average = _ratingsServices.Average(Average);
         }
     }
