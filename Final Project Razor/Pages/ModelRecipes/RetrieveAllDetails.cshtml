@@ -2,14 +2,16 @@
 @model Final_Project_Razor.Pages.ModelRecipes.RetrieveAllDetailsModel
 @{
 }
-@foreach (var item in Model.Recipes)
+@if (Model.Recipes != null)
 {
-    <div>
-        <a asp-page="/ModelRecipes/RetrieveByIdDetails" asp-route-Id="@item.Id"><button>@item.Title</button></a>
+    @foreach (var item in Model.Recipes)
+    {
+        <div>
+            <a asp-page="/ModelRecipes/RetrieveByIdDetails" asp-route-RecipeId="@item.RecipeId"><button>@item.Title</button></a>
 
-        <br />
-    </div>
-    @* <div class="d-inline p-2 bg-primary text-white">
+            <br />
+        </div>
+        @* <div class="d-inline p-2 bg-primary text-white">
         @item.Title
     </div>
     <br />
@@ -32,4 +34,10 @@
     <br /> *@
 
 
+    }
 }
+else
+{
+    <p>We are out of Recipes. Hope you are not starving</p>
+}
+

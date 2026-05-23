@@ -6,10 +6,15 @@
 <form method="post">
 
     <input type="text" placeholder="@Model.Rating.Rating" name="Rating" id=""/>
-    <input type="hidden" value="@Model.Rating.Id" name="Id">
-    <input type="hidden" value="@Model.Rating.Recipe.Id" name="Id" id="" />
-    <input type="hidden" value"@Model.Rating.User.Id" name"Id" id=""/>
+    <input type="hidden" value="@Model.Rating.RatingId" name="RatingId">
+    <input type="hidden" value="@Model.Rating.Recipe.RecipeId" name="RecipeId" id="" />
+    <input type="hidden" value"@Model.Rating.User.UserId" name"UserId" id=""/>
          
     <button type="submit" class="btn btn-default-lg"> Edit</button>
+    @if (Request.Query["error"] == "true")
+    {
+        <h1>What I said? Rate this Recipe between 1 and 10! No cookies for you!</h1>
+        <h2>Go back and try again, do it like you're told this time!</h2>
+    }
 
 </form>

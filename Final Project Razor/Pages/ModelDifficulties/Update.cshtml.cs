@@ -10,16 +10,16 @@ namespace Final_Project_Razor.Pages.ModelDifficulties
         private readonly DifficultiesServices _difficultiesServices = new DifficultiesServices();
 
         public Difficulties difficulty { get; set; }
-        public void OnGet(int id)
+        public void OnGet(int difficultyId)
         {
-            difficulty = _difficultiesServices.RetrieveById(id);
+            difficulty = _difficultiesServices.RetrieveById(difficultyId);
         }
 
         public IActionResult OnPost()
         {
             Difficulties difficulty = new Difficulties();
 
-            difficulty.Id = Convert.ToInt32(Request.Form["id"]);
+            difficulty.DifficultyId = Convert.ToInt32(Request.Form["difficultyId"]);
             difficulty.DifficultyName = Convert.ToString(Request.Form["difficultyName"]);
 
             difficulty = _difficultiesServices.Update(difficulty);

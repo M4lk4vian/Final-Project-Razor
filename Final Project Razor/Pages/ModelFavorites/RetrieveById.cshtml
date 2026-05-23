@@ -5,7 +5,7 @@
 
 
 <label>User @Model.User.UserName Favorite's Recipes</label>
-<a asp-page="/ModelFavorites/Update" asp-route-Id_recipe="@Model.Favorite.Id"></a>
+<a asp-page="/ModelFavorites/Update" asp-route-FavoriteId="@Model.Favorite.FavoriteId"></a>
 <ul>
     <li>@Model.Recipe.Title</li>
     <li>@Model.Recipe.PrepMethod</li>

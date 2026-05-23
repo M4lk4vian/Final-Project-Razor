@@ -13,7 +13,7 @@ namespace Final_Project_Razor.Pages.ModelComments
         private readonly CommentsServices _commentsServices = new CommentsServices();
         private readonly RecipesServices _recipesServices = new RecipesServices();
         private readonly UsersServices _usersServices = new UsersServices();
-        public int Id { get; set; }
+        public int CommentId { get; set; }
 
         public int UserId {  get; set; }
 
@@ -25,13 +25,12 @@ namespace Final_Project_Razor.Pages.ModelComments
         public Users User { get; set; }
 
 
-        public void OnGet(int Id, int UserId, int RecipeId)
+        public void OnGet(int CommentId, int RecipeId)
         {
-            User.Id = UserId;
-            Comment = _commentsServices.RetrieveById(Id);
-            Recipe = _recipesServices.RetrieveById(RecipeId);
             UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
             User = _usersServices.RetrieveById(UserId);
+            Comment = _commentsServices.RetrieveById(CommentId);
+            Recipe = _recipesServices.RetrieveById(RecipeId);
         }
     }
 }

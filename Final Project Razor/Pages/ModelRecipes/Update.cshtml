@@ -3,47 +3,56 @@
 @{
 }
 <label for="Recipe">Change what you will</label>
-<form method="post">
-    <ul>
-        <input type="hidden" value=@Model.Recipe.Id name="Id">
-        <li>
-            <label>@Model.Recipe.Title</label>
-            <input type="text" placeholder=@Model.Recipe.Title name="Title" id=""><br>
-            
-        </li>
+@if (Model.Recipe != null)
+{
 
-        
-        <li>
-            <label>@Model.Recipe.PrepMethod</label>
-            <input type="text" placeholder=@Model.Recipe.PrepMethod name="PrepMethod" id=""><br>
-        </li>
+    <form method="post">
+        <ul>
+            <input type="hidden" value=@Model.Recipe.RecipeId name="RecipeId">
+            <li>
+                <label>@Model.Recipe.Title</label>
+                <input type="text" placeholder=@Model.Recipe.Title name="Title" id=""><br>
 
-        <li>
-            <label>@Model.Recipe.PrepTime</label>
-            <input type="text" placeholder=@Model.Recipe.PrepTime name="PrepTime" id=""><br>
-        </li>
-        <li>
-            <p>Please select the Category you want to change.</p>
-            <select name="category" id="">
-                @foreach (var name in Model.Categories)
-                {
-                    <option value="@name.Id">@name.CategoryName</option>
-                    
-                }
-            </select>
-        </li>
-        <li>
-            <p>Please select the Difficulty you want to use for this recipe.</p>
-            <select name="difficulty" id="">
-                @foreach (var name in Model.Difficulties)
-                {
-                    <option value="@name.Id">@name.DifficultyName</option>
-                }
-            </select>
-        </li>
-        <br />
-        <br />
-        <button type="submit" class="btn btn-default-lg"> Edit</button>
-    </ul>
+            </li>
 
-</form>
+
+            <li>
+                <label>@Model.Recipe.PrepMethod</label>
+                <input type="text" placeholder=@Model.Recipe.PrepMethod name="PrepMethod" id=""><br>
+            </li>
+
+            <li>
+                <label>@Model.Recipe.PrepTime</label>
+                <input type="text" placeholder=@Model.Recipe.PrepTime name="PrepTime" id=""><br>
+            </li>
+            <li>
+                <p>Please select the Category you want to change.</p>
+                <select name="category" id="">
+                    @foreach (var name in Model.Categories)
+                    {
+                        <option value="@name.CategoryId">@name.CategoryName</option>
+
+                    }
+                </select>
+            </li>
+            <li>
+                <p>Please select the Difficulty you want to use for this recipe.</p>
+                <select name="difficulty" id="">
+                    @foreach (var name in Model.Difficulties)
+                    {
+                        <option value="@name.DifficultyId">@name.DifficultyName</option>
+                    }
+                </select>
+            </li>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-default-lg"> Edit</button>
+        </ul>
+
+    </form>
+}
+else
+{
+    <p>We are out of Recipes. Hope you are not starving</p>
+}
+

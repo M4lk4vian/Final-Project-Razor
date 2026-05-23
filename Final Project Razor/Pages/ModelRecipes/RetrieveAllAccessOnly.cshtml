@@ -3,23 +3,40 @@
 @{
 }
 <p>Accepted Recipes</p>
-@foreach (var item in Model.AcceptedRecipes)
+@if (Model.AcceptedRecipes != null)
 {
-    <div>
-        <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.Id">
-            <button>@item.Title</button>
-        </a>
-    </div>
+    @foreach (var item in Model.AcceptedRecipes)
+    {
+        <div>
+            <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.RecipeId">
+                <button>@item.Title</button>
+            </a>
+        </div>
 
+    }
+    <br />
 }
-<br />
-<p>Blocked Recipes</p>
-@foreach (var item in Model.BlockedRecipes)
+else
 {
-    <div>
-        <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.Id">
-            <button>@item.Title</button>
-        </a>
-    </div>
+    <p>No accepted recipes yet</p>
 }
+
+<p>Blocked Recipes</p>
+@if(Model.BlockedRecipes != null)
+{
+    @foreach (var item in Model.BlockedRecipes)
+    {
+        <div>
+            <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.RecipeId">
+                <button>@item.Title</button>
+            </a>
+        </div>
+    }
+}
+else
+{
+    <p>No blocked recipes yet</p>
+}
+
+
 

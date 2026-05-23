@@ -14,14 +14,14 @@ namespace Final_Project_Razor.Pages.ModelCategories
 
         private readonly CategoriesServices _categoriesServices = new CategoriesServices();
 
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
         public Categories Category { get; set; }
         //public List<Categories> categories { get; set; }
 
-        public void OnGet(int Id)
+        public void OnGet(int CategoryId)
         {
 
-            Category = _categoriesServices.RetrieveById(Id);
+            Category = _categoriesServices.RetrieveById(CategoryId);
 
         }
 
@@ -29,7 +29,7 @@ namespace Final_Project_Razor.Pages.ModelCategories
         {
             Categories category = new Categories();
             
-            category.Id = Convert.ToInt32(Request.Form["Id"]);
+            category.CategoryId = Convert.ToInt32(Request.Form["CategoryId"]);
             category.CategoryName = Convert.ToString(Request.Form["CategoryName"]);
 
             category = _categoriesServices.Update(category);

@@ -17,7 +17,7 @@ namespace Final_Project_Razor.Pages.ModelIngredients
 
         public IActionResult OnPost()
         {
-            ingredient.Id = Convert.ToInt32(Request.Form["id"]);
+            ingredient.IngredientId = Convert.ToInt32(Request.Form["IngredientId"]);
             ingredient.IngredientName = Request.Form["IngredientName"];
 
             ingredient = _ingredientsServices.Create(ingredient);

@@ -14,11 +14,8 @@ namespace Final_Project_Razor.Pages.ModelRecipes
         private readonly RatingsServices _ratingsServices = new RatingsServices();
         private readonly IngredientsServices _ingredientsServices = new IngredientsServices();
         private readonly IngredientsRecipesServices _ingredientsRecipesServices = new IngredientsRecipesServices();
-
         public Users User { get; set; }
-
         public Recipes Recipe { get; set; }
-
         public Favorites Favorite { get; set; }
         public Comments Comment { get; set; }
         public List<Comments> Comments { get; set; }
@@ -27,12 +24,13 @@ namespace Final_Project_Razor.Pages.ModelRecipes
         public Ratings Rating { get; set; }
 
         public double Average { get; set; }
-        public void OnGet(int Id, int Id_user, int Id_recipe, int Id_ingredient)
+        public void OnGet(int Id, int Id_user, int Id_recipe, int Id_ingredient, int ratingId, int recipeId)
         {
             Average = _ratingsServices.Average(Average);
-            Rating = _ratingsServices.RetrieveById(Id);
-            Recipe = _recipesServices.RetrieveById(Id);
-            Id_recipe = Recipe.Id;
+            Rating = _ratingsServices.RetrieveById(ratingId);
+            Recipe = _recipesServices.RetrieveById(recipeId);//aqui não dá erro, porquê?
+
+            Id_recipe = Recipe.RecipeId;
             IngredientsRecipes = _ingredientsRecipesServices.RetrieveIngredientsByRecipeId(Id_recipe);
             Comments = _commentsServices.RetrieveCommentsByUserId(Id_user);
         }

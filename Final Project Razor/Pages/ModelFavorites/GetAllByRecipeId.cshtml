@@ -5,7 +5,7 @@
 
 @foreach(var item in Model.Favorites)
 {
-    <a asp-page="/ModelFavorites/RetrieveById" asp-route-id_recipe="@item.Recipe.Id"></a>
+    <a asp-page="/ModelFavorites/RetrieveById" asp-route-RecipeId="@item.Recipe.RecipeId"></a>
 
     <label>User @Model.User.UserName Favorite's Recipes</label>
 

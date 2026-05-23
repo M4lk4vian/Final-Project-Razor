@@ -5,7 +5,7 @@
 @foreach (var item in Model.Users)
 {
     <div>
-        <a asp-page="/ModelUsers/UpdateBlockedStatus" asp-route-Id="@item.Id">
+        <a asp-page="/ModelUsers/UpdateBlockedStatus" asp-route-UserId="@item.UserId">
             <button>@item.UserName</button>
         </a>
     </div>

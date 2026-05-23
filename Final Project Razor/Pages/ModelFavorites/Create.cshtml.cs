@@ -13,13 +13,13 @@ namespace Final_Project_Razor.Pages.ModelFavorites
 
         public Favorites Favorite { get; set; }
 
-        public void OnGet(int Id)
+        public void OnGet(int RecipeId)
         {
             Favorite = new Favorites();
             Favorite.User = new Users();
             Favorite.Recipe = new Recipes();
             Favorite.User = JsonSerializer.Deserialize<Users>(HttpContext.Session.GetString("user"));
-            Favorite.Recipe.Id = Id;
+            Favorite.Recipe.RecipeId = RecipeId;
 
 
         }
@@ -29,12 +29,12 @@ namespace Final_Project_Razor.Pages.ModelFavorites
             Favorite = new Favorites();
             Favorite.User = new Users();
             Favorite.Recipe = new Recipes();
-            Favorite.User.Id = Convert.ToInt32(Request.Form["Id_user"]);
-            Favorite.Recipe.Id = Convert.ToInt32(Request.Form["Id_recipe"]);
+            Favorite.User.UserId = Convert.ToInt32(Request.Form["Id_user"]);
+            Favorite.Recipe.RecipeId = Convert.ToInt32(Request.Form["Id_recipe"]);
 
             Favorite = _favoritesServices.Create(Favorite);
 
-            return Redirect($"/ModelFavorites/RetrieveFavoritesByUserId?Id={Favorite.User.Id}");
+            return Redirect($"/ModelFavorites/RetrieveFavoritesByUserId?Id={Favorite.User.UserId}");
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Final_Project_Razor.Pages.User
             Users user = new Users();
             user.UserName = Convert.ToString(Request.Form["UserName"]);
             user.Password = Convert.ToString(Request.Form["Password"]);
-            user.IsAdmin = Convert.ToBoolean(Request.Form["isAdmin"]);
+            user.IsAdmin = Convert.ToBoolean(Request.Form["IsAdmin"]);
 
             _usersServices.Register(user);
 

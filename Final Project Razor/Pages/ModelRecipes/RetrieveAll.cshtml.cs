@@ -23,16 +23,19 @@ namespace Final_Project_Razor.Pages.ModelRecipes
         public List<Recipes> Recipes = new List<Recipes>();
         public List<IngredientsRecipes> IngredientsRecipes = new List<IngredientsRecipes>();
         public List<Comments> Comments = new List<Comments>();
-        public void OnGet(int Id)
+        public void OnGet(int RecipeId, int Id_recipe, int CategoryId)
         {
-            Recipe = _recipesServices.RetrieveById(Id);
+            Recipe = new Recipes();
+            Category = new Categories();
+            //Recipe = _recipesServices.RetrieveById(recipeId);
             Recipes = _recipesServices.RetrieveAll();
-            int id_recipe = Recipe.Id;
-            IngredientsRecipes = _ingredientsRecipesServices.RetrieveIngredientsByRecipeId(id_recipe);
-            Category = _categoriesServices.RetrieveById(Id);
+            Recipe.RecipeId = RecipeId;
+            IngredientsRecipes = _ingredientsRecipesServices.RetrieveIngredientsByRecipeId(Id_recipe);
+            //Category = _categoriesServices.RetrieveById(CategoryId);
 
             int userId = Convert.ToInt32(_memoryCache.Get("userKey"));
             user = _usersServices.RetrieveById(userId);
         }
+
     }
 }

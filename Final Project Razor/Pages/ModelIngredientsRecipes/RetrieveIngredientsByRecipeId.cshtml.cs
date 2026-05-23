@@ -15,7 +15,7 @@ namespace Final_Project_Razor.Pages.ModelIngredientsRecipes
 
         public void OnGet(int id_recipe)
         {
-            Recipe.Id = id_recipe;
+            Recipe.RecipeId = id_recipe;
             IngredientsRecipes = _ingredientsRecipesServices.RetrieveIngredientsByRecipeId(id_recipe);
 
 

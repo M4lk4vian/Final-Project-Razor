@@ -2,5 +2,15 @@
 @model Final_Project_Razor.Pages.ModelComments.RetrieveByIdModel
 @{
 }
-<a asp-page="/ModelComments/RetrieveById" asp-route-Id="@Model.Comment.Id"></a>
-<p>@Model.Comment.Content</p>
+@if(Model.Comment != null)
+{
+    <p>@Model.Comment.Content</p>
+    <p>Recipe: @Model.Comment.Recipe.Title</p>
+    <a asp-page="/ModelComments/RetrieveById"
+        asp-route-CommentId="@Model.Comment.CommentId">View comment</a>
+
+}
+else
+{
+    <p>This recipe has no comments yet</p>
+}

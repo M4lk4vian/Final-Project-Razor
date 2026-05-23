@@ -10,7 +10,7 @@ namespace Final_Project_Razor.Pages.ModelCategories
     {
         private readonly CategoriesServices _categoriesServices = new CategoriesServices();
         Categories category { get; set; }
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string CategoryName {  get; set; }
         
         public void OnGet()

@@ -13,28 +13,28 @@ namespace Final_Project_Razor.Pages.ModelUsers
 
         private readonly UsersServices _usersServices = new UsersServices();
 
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         public bool IsAdmin { get; set; }
 
         public Users UserLogged { get; set; }
         public Users User {  get; set; }
 
-        public void OnGet(int Id, int userId)
+        public void OnGet(int UserId)
         {
-            userId = Convert.ToInt32(_memoryCache.Get("userKey"));
-            UserLogged = _usersServices.RetrieveById(userId);
-            User = _usersServices.RetrieveById(Id);
+            UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
+            UserLogged = _usersServices.RetrieveById(UserId);
+            User = _usersServices.RetrieveById(UserId);
 
         }
 
         public IActionResult OnPost()
         {
             Users User = new Users();
-            Id = Convert.ToInt32(Request.Form["id"]);
+            UserId = Convert.ToInt32(Request.Form["UserId"]);
             bool BlockedStatus = Convert.ToBoolean(Request.Form["blockedStatus"]);
 
-            BlockedStatus = _usersServices.UpdateBlockedStatus(Id);
+            BlockedStatus = _usersServices.UpdateBlockedStatus(UserId);
 
             return Redirect("/ModelUsers/RetrieveAll");
         }

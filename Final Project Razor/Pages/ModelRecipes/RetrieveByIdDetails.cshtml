@@ -2,52 +2,62 @@
 @model Final_Project_Razor.Pages.ModelRecipes.RetrieveByIdDetailsModel
 @{
 }
-@if (Model.Recipe.BlockedStatus != true)
+@if (Model.Recipe != null)
 {
+    @if (Model.Recipe.BlockedStatus != true)
+    {
 
-    <ul style="list-style-type: none;">
-        <h3>@Model.Recipe.Title</h3>
+        <ul style="list-style-type: none;">
+            <h3>@Model.Recipe.Title</h3>
 
-        <li>@Model.Recipe.PrepMethod</li>
-        <br />
-        <li>Ingredients:</li>
+            <li>@Model.Recipe.PrepMethod</li>
+            <br />
+            <li>Ingredients:</li>
 
-        @foreach (var item in Model.IngredientsRecipes)
-        {
-            <div style="display: inline; list-style-type: none; position:relative; left:80px;">
-                @item.Ingredient.IngredientName, @item.Quantity, @item.Unit.UnitName
-            </div>
-        }
-
-    </ul>
-    <ul style="display: inline; list-style-type: none; position:relative; left:80px;">
-        <li>Preparation Time: @Model.Recipe.PrepTime</li>
-        <li>Difficulty: @Model.Recipe.Difficulty.DifficultyName</li>
-        <li>Category: @Model.Recipe.Category.CategoryName</li>
-        @if (Model.Rating.Rating == 0.0)
-        {
-            <p>Average Rating: N.A</p>
-
-        }
-        else
-        {
-            <p>Average Rating: @Model.Average</p>
-
-        }
-    </ul>
-    <ul style="list-style-type: none;">
-        <li>
-            @foreach (var ing in Model.Recipe.IngredientsRecipes)
+            @foreach (var item in Model.IngredientsRecipes)
             {
-            <li style="display: inline" list-style-type: none>@ing.Ingredient.IngredientName: @ing.Quantity @ing.Unit.UnitName | </li>
-
+                <div style="display: inline; list-style-type: none; position:relative; left:80px;">
+                    @item.Ingredient.IngredientName, @item.Quantity, @item.Unit.UnitName
+                </div>
             }
-        </li>
 
-    </ul>
+        </ul>
+        <ul style="display: inline; list-style-type: none; position:relative; left:80px;">
+            <li>Preparation Time: @Model.Recipe.PrepTime</li>
+            <li>Difficulty: @Model.Recipe.Difficulty.DifficultyName</li>
+            <li>Category: @Model.Recipe.Category.CategoryName</li>
+            @if (Model.Rating != null)
+            {
+                @if (Model.Rating.Rating == 0.0)
+                {
+                    <p>Average Rating: N.A</p>
+
+                }
+                else
+                {
+                    <p>Average Rating: @Model.Average</p>
+
+                }
+            }
+            else
+            {
+                <p>Average Rating: N.A</p>
+            }
+
+        </ul>
+        <ul style="list-style-type: none;">
+            <li>
+                @foreach (var ing in Model.Recipe.IngredientsRecipes)
+                {
+                <li style="display: inline" list-style-type: none>@ing.Ingredient.IngredientName: @ing.Quantity @ing.Unit.UnitName | </li>
+
+                }
+            </li>
+
+        </ul>
+    }
 }
 else
 {
-    <p>This Recipe is currently unavailable due to some Shenanigans</p>
-    <p>Please wait for an Admin to approve this Recipe</p>
+    <p>We are out of Recipes. Hope you are not starving</p>
 }

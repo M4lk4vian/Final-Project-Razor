@@ -14,11 +14,8 @@ namespace Final_Project_Razor.Pages.ModelRatings
         private readonly RatingsServices _ratingsServices = new RatingsServices();
         private readonly RecipesServices _recipesServices = new RecipesServices();
         private readonly UsersServices _usersServices = new UsersServices();
-
-        public int Id { get; set; }
-
         public int UserId { get; set; }
-        public int Id_recipe { get; set; }
+        public int RecipeId { get; set; }
         public Ratings Rating { get; set; }
 
         public Recipes Recipe { get; set; }
@@ -27,30 +24,34 @@ namespace Final_Project_Razor.Pages.ModelRatings
 
         public Users User { get; set; }
 
-        public void OnGet(int Id, int UserId, double Average, int Id_recipe)
+        public void OnGet(int RatingId, int UserId, double Average, int RecipeId)
         {
-            Rating = _ratingsServices.RetrieveById(Id);
+            Rating = _ratingsServices.RetrieveById(RatingId);
             Average = _ratingsServices.Average(Average);
-            Recipe = _recipesServices.RetrieveById(Id_recipe);
+            Recipe = _recipesServices.RetrieveById(RecipeId);
             UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
             User = _usersServices.RetrieveById(UserId);
         }
 
         public IActionResult OnPost()
         {
-            Ratings Rating = new Ratings();
+            Rating = new Ratings();
             Rating.Recipe = new Recipes();
             Rating.User = new Users();
 
 
-            Rating.Id = Convert.ToInt32(Request.Form["Id"]);
+
             Rating.Rating = Convert.ToInt32(Request.Form["Rating"]);
-            Rating.Recipe.Id = Convert.ToInt32(Request.Form["Recipe"]);
-            Rating.User.Id = Convert.ToInt32(Request.Form["User"]);
+            Rating.RatingId = Convert.ToInt32(Request.Form["RatingId"]);
+            Rating.Recipe.RecipeId = Convert.ToInt32(Request.Form["RecipeId"]);
+            Rating.User.UserId = Convert.ToInt32(Request.Form["UserId"]);
 
             Rating = _ratingsServices.Update(Rating);
 
-            return Redirect("/ModelRatings/Average");
+            if (Rating == null)
+                return Redirect($"/ModelRatings/Create?RecipeId={RecipeId}&error=true");
+
+            return Redirect($"/ModelRecipes/RetrieveById?recipeId={RecipeId}");
         }
 
     }

@@ -13,20 +13,18 @@ namespace Final_Project_Razor.Pages.ModelComments
         private readonly CommentsServices _commentsServices = new CommentsServices();
         private readonly UsersServices _usersServices = new UsersServices();
 
-        public int Id { get; set; }
-
-        public int Id_user { get; set; }
+        public int UserId { get; set; }
         public List<Comments> Comments = new List<Comments>();
 
-        public Users user { get; set; }
+        public Users User { get; set; }
 
-        public void OnGet(int Id_user, int Id)
+        public void OnGet(int UserId)
         {
 
-            Comments = _commentsServices.RetrieveCommentsByUserId(Id_user);
-            Id = Convert.ToInt32(_memoryCache.Get("userKey"));
-            user = _usersServices.RetrieveById(Id);
-            user.Id = Id_user;
+            UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
+            User = _usersServices.RetrieveById(UserId);
+            Comments = _commentsServices.RetrieveCommentsByUserId(UserId);
+
         }
     }
 }

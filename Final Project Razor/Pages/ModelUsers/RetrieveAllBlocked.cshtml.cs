@@ -13,8 +13,6 @@ namespace Final_Project_Razor.Pages.ModelUsers
 
         private readonly UsersServices _usersServices = new UsersServices();
 
-        public int Id;
-
         public int UserId;
 
         public Users User { get; set; }

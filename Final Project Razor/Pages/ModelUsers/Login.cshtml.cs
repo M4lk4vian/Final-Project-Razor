@@ -17,7 +17,7 @@ namespace Final_Project_Razor.Pages
 
         private readonly string cacheKey = "userKey";
 
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public string UserName { get; set; }
         [BindProperty]
 
@@ -47,7 +47,7 @@ namespace Final_Project_Razor.Pages
 
             //JsonSerializer.Deserialize<Users>(HttpContext.Session.GetString("user"));
 
-            _memoryCache.Set("userKey", user.Id);
+            _memoryCache.Set("userKey", user.UserId);
 
             return RedirectToPage("/Management");
 

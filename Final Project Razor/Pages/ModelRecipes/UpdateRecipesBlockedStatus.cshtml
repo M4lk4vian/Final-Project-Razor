@@ -2,9 +2,16 @@
 @model Final_Project_Razor.Pages.ModelRecipes.UpdateRecipesBlockedStatusModel
 @{
 }
-<form method="post">
+@if (Model.Recipes != null)
+{
+    <form method="post">
     <p>Do you want to change any Recipe clearance?</p>
-    <input type="hidden" value="@Model.Recipe.Id" name="Id"
+    <input type="hidden" value="@Model.Recipe.RecipeId" name="Id" />
     <input asp-for="@Model.Recipe.BlockedStatus" type="checkbox" value="@Model.Recipe.BlockedStatus" name="blockedStatus"/>
     <button type="submit" class="btn btn-default-lg"> Edit</button>
-</form>
+    </form>
+}
+else
+{
+    <p>We are out of Recipes. Hope you are not starving</p>
+}

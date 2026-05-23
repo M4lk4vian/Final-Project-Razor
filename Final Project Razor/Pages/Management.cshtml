@@ -25,19 +25,19 @@
         @if (Model.User.IsAdmin == false)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-page="/ModelRecipes/Create" asp-route-Id="@Model.User.Id">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelRecipes/Create" asp-route-UserId="@Model.User.UserId">
                     <button type="button" class="btn btn-secondary">Create a Recipe</button>
                 </a>
             </li>
             <div style="width:10px;height:auto;display:inline-block;"></div>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-page="/ModelRecipes/RetrieveAll" asp-route-Id="@Model.User.Id">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelRecipes/RetrieveAll" asp-route-UserId="@Model.User.UserId">
                     <button type="button" class="btn btn-secondary">Show all Recipes</button>
                 </a>
             </li>
             <div style="width:10px;height:auto;display:inline-block;"></div>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-page="/ModelFavorites/GetAllByUserId" asp-route-Id_user="@Model.User.Id">
+                <a class="nav-link text-dark" asp-area="" asp-page="/ModelFavorites/GetAllByUserId" asp-route-UserId="@Model.User.UserId">
                     <button type="button" class="btn btn-secondary">Show all Favorites</button>
                 </a>
             </li>

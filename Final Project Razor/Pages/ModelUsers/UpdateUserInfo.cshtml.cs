@@ -11,8 +11,6 @@ namespace Final_Project_Razor.Pages.ModelUsers
         private readonly IMemoryCache _memoryCache;
         public UpdateUserInfoModel(IMemoryCache memoryCache) => _memoryCache = memoryCache;
         private readonly UsersServices _usersServices = new UsersServices();
-
-        public int Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
@@ -28,7 +26,7 @@ namespace Final_Project_Razor.Pages.ModelUsers
         public IActionResult OnPost() 
         {
             Users User = new Users();
-            User.Id = Convert.ToInt32(Request.Form["Id"]);
+            User.UserId = Convert.ToInt32(Request.Form["UserId"]);
             User.UserName = Convert.ToString(Request.Form["UserName"]);
             User.Password = Convert.ToString(Request.Form["Password"]);
             User.IsAdmin = Convert.ToBoolean(Request.Form["IsAdmin"]);

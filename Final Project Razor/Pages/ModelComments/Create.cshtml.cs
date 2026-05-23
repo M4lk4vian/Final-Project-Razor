@@ -11,7 +11,8 @@ namespace Final_Project_Razor.Pages.ModelComments
 {
     public class CreateModel : PageModel
     {
-
+        private readonly IMemoryCache _memoryCache;
+        public CreateModel(IMemoryCache memorycache) => _memoryCache = memorycache;
         private readonly CommentsServices _commentsServices = new CommentsServices();
         private readonly RecipesServices _recipesServices = new RecipesServices();
         private readonly UsersServices _usersServices = new UsersServices();
@@ -22,13 +23,13 @@ namespace Final_Project_Razor.Pages.ModelComments
 
         public Comments Comment { get; set; }
         
-        public void OnGet(int Id)
+        public void OnGet(int RecipeId)
         {
+            int UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
             Comment = new Comments();
-            Comment.Recipe = _recipesServices.RetrieveById(Id);
-            Comment.User = new Users();
+            Comment.Recipe = _recipesServices.RetrieveById(RecipeId);
+            Comment.User = _usersServices.RetrieveById(UserId);
 
-            Comment.User = JsonSerializer.Deserialize<Users>(HttpContext.Session.GetString("user"));
         }
         public IActionResult OnPost()
         {
@@ -37,8 +38,8 @@ namespace Final_Project_Razor.Pages.ModelComments
             Comment.User = new Users();
 
             Comment.Content = Convert.ToString(Request.Form["Content"]);
-            Comment.Recipe.Id = Convert.ToInt32(Request.Form["Id_recipe"]);
-            Comment.User.Id = Convert.ToInt32(Request.Form["Id_user"]);
+            Comment.Recipe.RecipeId = Convert.ToInt32(Request.Form["Id_recipe"]);
+            Comment.User.UserId = Convert.ToInt32(Request.Form["Id_user"]);
 
             Comment = _commentsServices.Create(Comment);
 

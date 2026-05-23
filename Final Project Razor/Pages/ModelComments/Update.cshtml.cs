@@ -14,20 +14,20 @@ namespace Final_Project_Razor.Pages.ModelComments
         private readonly RecipesServices _recipesServices = new RecipesServices();
         private readonly UsersServices _usersServices = new UsersServices();
 
-        public int Id_user { get; set; }
-        public int Id_recipe { get; set; }
-        public int Id_comment { get; set; }
+        public int UserId{ get; set; }
+        public int RecipeId { get; set; }
+        public int CommentId { get; set; }
         public Comments comment {get; set;}
 
         public Users user { get; set;}
         public Recipes recipe{ get; set; }
 
-        public void OnGet(int Id_user, int Id_recipe, int Id_comment)
+        public void OnGet(int UserId, int RecipeId, int CommentId)
         {
-            Id_user = Convert.ToInt32(_memoryCache.Get("userKey"));
-            user = _usersServices.RetrieveById(Id_user);
-            recipe = _recipesServices.RetrieveById(Id_recipe);
-            comment = _commentsServices.RetrieveById(Id_comment);
+            UserId = Convert.ToInt32(_memoryCache.Get("userKey"));
+            user = _usersServices.RetrieveById(UserId);
+            recipe = _recipesServices.RetrieveById(RecipeId);
+            comment = _commentsServices.RetrieveById(CommentId);
 
         }
 
@@ -36,10 +36,10 @@ namespace Final_Project_Razor.Pages.ModelComments
             Comments comment = new Comments();
             comment.Recipe = new Recipes();
             comment.User = new Users();
-            comment.Id = Convert.ToInt32(Request.Form["Id"]);
+            comment.CommentId = Convert.ToInt32(Request.Form["CommentId"]);
             comment.Content = Convert.ToString(Request.Form["Content"]);
-            comment.Recipe.Id = Convert.ToInt32(Request.Form["Id_recipe"]);
-            comment.User.Id = Convert.ToInt32(Request.Form["Id_user"]);
+            comment.Recipe.RecipeId = Convert.ToInt32(Request.Form["Id_recipe"]);
+            comment.User.UserId = Convert.ToInt32(Request.Form["Id_user"]);
 
             comment = _commentsServices.Update(comment);
             return Redirect("/ModelComments/Update");
