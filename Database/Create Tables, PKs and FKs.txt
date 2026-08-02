@@ -1,0 +1,248 @@
+CREATE TABLE Ingredients
+(id int IDENTITY(1,1),
+ ingredientName nvarchar (20),
+ PRIMARY KEY (id))
+
+  CREATE TABLE Categories
+  (id int IDENTITY(1,1),
+  categoryName nvarchar (500),
+  PRIMARY KEY (id))
+
+  CREATE TABLE Difficulties
+  (id int IDENTITY(1,1),
+  difficultyName nvarchar (50),
+  PRIMARY KEY (id))
+
+
+  CREATE TABLE Users (
+  id int IDENTITY(1,1),
+  userName nvarchar(50),
+  password nvarchar(50),
+  blockedStatus bit,
+  isAdmin bit,
+  isLogged bit,
+  PRIMARY KEY (id))  
+
+  CREATE TABLE Recipes 
+  (id int IDENTITY(1,1),
+  title nvarchar (500),
+  prepMethod nvarchar (500),
+  approvedStatus bit,
+  prepTime nvarchar (50),
+  id_category int,
+  id_difficulty int,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_category) REFERENCES Categories(id),
+  FOREIGN KEY (id_difficulty) REFERENCES Difficulties(id))
+
+  CREATE TABLE Favorites (
+  id int IDENTITY(1,1),
+  id_recipe int,
+  id_user int,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_recipe) REFERENCES Recipes(id),
+  FOREIGN KEY (id_user) REFERENCES Users(id))  
+  
+  CREATE TABLE Comments (
+  id int IDENTITY(1,1),
+  content nvarchar(500),
+  id_recipe int,
+  id_user int,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_recipe) REFERENCES Recipes(id),
+  FOREIGN KEY (id_user) REFERENCES Users(id))
+
+  CREATE TABLE Ratings (
+  id int IDENTITY(1,1),
+  rating nvarchar(500),
+  id_recipe int,
+  id_user int,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_recipe) REFERENCES Recipes(id),
+  FOREIGN KEY (id_user) REFERENCES Users(id))
+
+  CREATE TABLE Units 
+  (
+  id int IDENTITY(1,1),
+  unitName nvarchar(50),
+  PRIMARY KEY (id))
+
+  CREATE TABLE Ingredients_Recipes
+  (id int IDENTITY(1,1),
+  id_recipe int,
+  id_ingredient int,
+  quantity float,
+  id_unit int,
+
+  PRIMARY KEY (id),
+  FOREIGN KEY (id_recipe) REFERENCES Recipes(id),
+  FOREIGN KEY (id_ingredient) REFERENCES Ingredients(id),
+  FOREIGN KEY (id_unit) REFERENCES Units(id))  
+
+  
+INSERT INTO Categories VALUES ('Soup')
+
+INSERT INTO Categories VALUES ('Smash em up')
+
+INSERT INTO Categories VALUES ('Smash em up')
+
+INSERT INTO Categories VALUES ('Carpet Bombing')
+
+INSERT INTO Difficulties VALUES ('difficulty 1')
+
+INSERT INTO Difficulties VALUES ('difficulty 2')
+
+INSERT INTO Difficulties VALUES ('difficulty 3')
+
+INSERT INTO Difficulties VALUES ('difficulty 4')
+
+INSERT INTO Recipes VALUES ('Recipe1','Method1', 0 , 'Time', 1, 1)
+
+INSERT INTO Recipes VALUES ('Recipe2', 'Method2', 0, 'Time', 1, 1)
+
+INSERT INTO Recipes VALUES ('Recipe3', 'Method3', 0, 'Time', 1, 1)
+
+INSERT INTO Recipes VALUES ('Recipe4', 'Method4', 0, 'Time', 2, 2)
+
+INSERT INTO Users
+VALUES ('Admin', '123456', 0, 1, 0); 
+
+INSERT INTO Users
+VALUES ('Francisco', '123456', 1, 0, 0);
+
+INSERT INTO Users
+VALUES ('Pedro', '123456', 0, 0, 0);
+
+INSERT INTO Users
+VALUES ('António', '123456', 1, 0, 0);
+
+INSERT INTO Ratings VALUES ('Rating1', 1, 2)
+
+INSERT INTO Ratings VALUES ('Rating2', 1, 2)
+
+INSERT INTO Ratings VALUES ('Rating3', 2, 1)
+
+INSERT INTO Ratings VALUES ('Rating4', 1, 1)
+
+INSERT INTO Ratings VALUES ('Rating5', 1, 2)
+
+INSERT INTO Ratings VALUES ('Rating6', 1, 1)
+
+
+INSERT INTO Ingredients VALUES ('Ingredient1')
+
+INSERT INTO Ingredients VALUES ('Ingredient2')
+
+INSERT INTO Ingredients VALUES ('Ingredient3')
+
+INSERT INTO Ingredients VALUES ('Ingredient4')
+
+INSERT INTO Ingredients VALUES ('Ingredient15')
+
+INSERT INTO Ingredients VALUES ('Ingredient16')
+
+INSERT INTO Ingredients_Recipes VALUES (1, 4, 1, 2)
+
+INSERT INTO Ingredients_Recipes VALUES (2, 5, 2, 1)
+
+INSERT INTO Ingredients_Recipes VALUES (2, 6, 234, 3)
+
+INSERT INTO Ingredients_Recipes VALUES (3, 1, 23, 4)
+
+INSERT INTO Ingredients_Recipes VALUES (3, 2, 12, 1)
+
+INSERT INTO Ingredients_Recipes VALUES (4, 1, 13, 2)
+
+INSERT INTO Ingredients_Recipes VALUES (4, 3. 123, 3)
+
+INSERT INTO Units
+VALUES ('Unit1')
+
+
+INSERT INTO Units
+VALUES ('Unit2')
+
+
+INSERT INTO Units
+VALUES ('Unit3')
+
+
+INSERT INTO Units
+VALUES ('Unit4')
+
+
+INSERT INTO Units
+VALUES (3, 'Unit3')
+
+
+INSERT INTO Units
+VALUES (4, 'Unit4')
+
+INSERT INTO Comments VALUES ('content1', 1 , 2)
+
+INSERT INTO Comments VALUES ('content2', 2 , 3)
+
+INSERT INTO Comments VALUES ('content1', 3 , 1)
+
+INSERT INTO Comments VALUES ('content1', 1 , 4)
+
+
+INSERT INTO Favorites VALUES (1, 1)
+
+INSERT INTO Favorites VALUES (4, 2)
+
+INSERT INTO Favorites VALUES (2, 3)
+
+INSERT INTO Favorites VALUES (3, 4)
+
+
+
+CREATE PROCEDURE ViewRecipeDetails
+AS
+BEGIN
+
+SELECT 
+
+
+CREATE PROCEDURE RegisterNewUser
+@id int,
+@userName nvarchar(50),
+@password nvarchar(50),
+AS
+BEGIN
+
+INSERT INTO RegUser VALUES (@id, @userName, @password)
+
+END
+
+---------------------------------------------------------------------
+
+CREATE PROCEDURE InsertNewRecipe
+@id int,
+@prepMethod nvarchar (500),
+@id_category int,
+@id_difficulty int,
+@id_rating int,
+@prepTime nvarchar (50),
+AS
+BEGIN
+
+INSERT INTO Recipes VALUES (@id, @prepMethod, @id_catgegory, @id_difficulty, @id_rating, @prepTime)
+
+END
+
+----------------------------------------------------------------------
+
+CREATE PROCEDURE NewComment
+@id int,
+@comment nvarchar(500)
+AS
+BEGIN 
+
+INSERT INTO RegUser (comments) VALUES @id, @comment)
+
+END
+
+--------------------------------------------------------------------------
+
+CREATE PROCEDURE NewRatingRecipe
