@@ -5,11 +5,11 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Final Project Razor", "Final Project Razor\Final Project Razor.csproj", "{0AB7DEC9-79B5-4F38-96A5-A1265C009C54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "..\Final Project\Models\Models.csproj", "{98FCE27D-659A-45E1-953C-AEC6F4002394}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{98FCE27D-659A-45E1-953C-AEC6F4002394}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "..\Final Project\Repository\Repository.csproj", "{31D0026C-745C-4AB2-8279-76F62E47AFD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{31D0026C-745C-4AB2-8279-76F62E47AFD5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "..\Final Project\Services\Services.csproj", "{A8B6ED9B-0A63-45EE-8AB5-5E11CE02C429}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{A8B6ED9B-0A63-45EE-8AB5-5E11CE02C429}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
