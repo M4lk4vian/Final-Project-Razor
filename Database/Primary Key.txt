@@ -1,0 +1,8 @@
+ALTER TABLE Recipes
+ADD PRIMARY KEY (ID);
+
+
+
+ALTER TABLE Recipes ALTER COLUMN ID  INT NOT NULL
+
+Select * from Recipes
