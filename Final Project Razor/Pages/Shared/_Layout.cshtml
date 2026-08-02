@@ -12,12 +12,14 @@
 <body style="background-color: lightslategray; color:blue">
     
     <header style="background-color: lightslategray; color:blue">
-        <div class="search-button">
-            <form class="example" action="action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
+		<div class="search-button">
+			<form method="get" action="/ModelSearch/Find">
+				<input type="text" placeholder="Search.." name="SearchTerm">
+					<button type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+				</form>
+		</div>
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">

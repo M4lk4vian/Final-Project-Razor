@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services;
-using Models;
+using System.Data;
 
 namespace Final_Project_Razor.Pages.ModelSearch
 {
@@ -9,11 +9,17 @@ namespace Final_Project_Razor.Pages.ModelSearch
     {
         private readonly SearchServices _searchServices = new SearchServices();
 
-        public string searchTerm;
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
+        public DataTable Results { get; set; } = new DataTable();
 
         public void OnGet()
         {
-            searchTerm = _searchServices.Find();
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                Results = _searchServices.Find(SearchTerm);
+            }
         }
     }
 }

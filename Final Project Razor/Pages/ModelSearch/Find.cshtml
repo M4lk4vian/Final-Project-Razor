@@ -2,7 +2,40 @@
 @model Final_Project_Razor.Pages.ModelSearch.FindModel
 @{
 }
-<a asp-page="/ModelSearch/Find" asp-route-id="@Model.searchTerm">
-    <button>@Model.searchTerm</button>
 
-</a>
+<h2>Pesquisar Receitas</h2>
+
+<form method="get">
+    <input type="text" name="SearchTerm" value="@Model.SearchTerm" placeholder="Pesquisar por título, ingrediente, categoria ou dificuldade..." />
+    <button type="submit">Pesquisar</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.SearchTerm))
+{
+    if (Model.Results.Rows.Count == 0)
+    {
+        <p>Nenhuma receita encontrada para "@Model.SearchTerm".</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Categoria</th>
+                    <th>Dificuldade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (System.Data.DataRow row in Model.Results.Rows)
+                {
+                    <tr>
+                        <td>@row["title"]</td>
+                        <td>@row["categoryName"]</td>
+                        <td>@row["difficultyName"]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
