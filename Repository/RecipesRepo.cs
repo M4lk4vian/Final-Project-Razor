@@ -11,14 +11,6 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Collections;
 using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Serilog;
-using Serilog.Core;
 
 namespace Repository
 {
