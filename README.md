@@ -25,7 +25,6 @@ Users can browse, create, and rate recipes; manage ingredients, categories, and 
 **Backend**
 - ASP.NET Core 8 (Razor Pages) / C#
 - ADO.NET (`System.Data.SqlClient`) with a layered Repository / Service architecture
-- Serilog (console + file logging)
 - SQL Server
 
 **Frontend**
