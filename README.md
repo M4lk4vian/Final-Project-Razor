@@ -45,7 +45,7 @@ Final Project Razor.sln
 
 ## Database
 
-The schema (tables, primary/foreign keys) is defined in [`Database/Create Tables, PKs and FKs.txt`](Database/Create%20Tables%2C%20PKs%20and%20FKs.txt), with sample seed data in [`Database/Ingredients_Recipes.sql`](Database/Ingredients_Recipes.sql) and [`Database/Receipts.sql`](Database/Receipts.sql).
+The schema (tables, primary/foreign keys) plus sample seed data is in [`Database/Create Tables, PKs and FKs (Corrigido).sql`](Database/Create%20Tables%2C%20PKs%20and%20FKs%20%28Corrigido%29.sql).
 
 ![Entity Relationship Diagram](Database/Diagrama%20Projecto%20Final.png)
 
@@ -62,7 +62,7 @@ The schema (tables, primary/foreign keys) is defined in [`Database/Create Tables
    git clone https://github.com/M4lk4vian/Final-Project-Razor.git
    cd Final-Project-Razor
    ```
-2. Create the database using the schema in `Database/Create Tables, PKs and FKs.txt`, optionally seeding it with the `.sql` files in the same folder.
+2. Create the database by running [`Database/Create Tables, PKs and FKs (Corrigido).sql`](Database/Create%20Tables%2C%20PKs%20and%20FKs%20%28Corrigido%29.sql) against it — it creates the schema and seeds it with sample data in one go.
 3. Create an `appsettings.json` inside `Final Project Razor/` (it's git-ignored, so it won't exist after cloning) with your own connection string:
    ```json
    {
@@ -80,11 +80,9 @@ The schema (tables, primary/foreign keys) is defined in [`Database/Create Tables
 
 ## Live Demo
 
-Not deployed yet — deployment in progress.
+🔗 [final-project-razor-a6d2acf0egegche3.francecentral-01.azurewebsites.net](https://final-project-razor-a6d2acf0egegche3.francecentral-01.azurewebsites.net)
 
-## Screenshots
-
-_Coming soon._
+Hosted on Azure App Service (free tier) with an Azure SQL Database backend. The free tier spins down after periods of inactivity, so the first request after a while may take a few extra seconds while it wakes back up.
 
 ## About This Project
 
