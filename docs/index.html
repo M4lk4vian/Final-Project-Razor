@@ -54,14 +54,21 @@
             }
 
             async function waitForSite() {
+                const startTime = Date.now();
+                const minDisplayTime = 5000;
                 let attempt = 0;
-                while(true) {
+                while (true) {
                     attempt++;
-                    messageEl.textContent = "Warming up your food... (attempt " + attempt +")";
+                    messageEl.textContent = "Warming up your food... (attempt " + attempt + ")";
 
                     const ready = await checkIfReady();
-                    if(ready){
-                        messageEl.textContent = "Ready! Showing food!"
+                    if (ready) {
+                        const elapsed = Date.now() - startTime;
+                        const remaining = minDisplayTime - elapsed;
+                        if (remaining > 0) {
+                            await new Promise(resolve => setTimeout(resolve, remaining));
+                        }
+                        messageEl.textContent = "Ready! Showing food!";
                         window.location.href = targetUrl;
                         return;
                     }
@@ -69,8 +76,7 @@
                     await new Promise(resolve => setTimeout(resolve, 2000));
                 }
             }
-            
-            waitForSite();
+
         </script>
 
     </body>
