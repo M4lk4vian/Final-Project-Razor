@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Warming up...</title>
+        <style>
+            body{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #1a1a1a;
+                font-family: Arial, sans-serif;
+                color: white;
+            }
+
+            video{
+                width: 200px;
+                border-radius: 12px;
+            }
+
+            #message{
+                margin-top: 20px;
+                font-size: 1.2rem;
+            }
+        </style>
+    </head>
+    <body>
+
+        <video autoplay loop muted playsinline>
+            <source src="https://media.tenor.com/yE-rY23bZlcAAAPo/chicken.mp4" type="video/mp4">
+        </video>
+        <p id="message">Warming up your food...</p>
+
+        <script>
+            const targetUrl = "https://final-project-razor-a6d2acf0egeqche3.francecentral-01.azurewebsites.net/";
+            const messageEl = document.getElementById("message");
+
+            async function checkIfReady(){
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+                try{
+                    await fetch(targetUrl, {mode: "no-cors", signal: controller.signal});
+                    clearTimeout(timeoutId);
+                    return true;
+                }   catch (error) {
+                    clearTimeout(timeoutId);
+                    return false;
+                }
+
+            }
+
+            async function waitForSite() {
+                let attempt = 0;
+                while(true) {
+                    attempt++;
+                    messageEl.textContent = "Warming up your food... (attempt " + attempt +")";
+
+                    const ready = await checkIfReady();
+                    if(ready){
+                        messageEl.textContent = "Ready! Showing food!"
+                        window.location.href = targetUrl;
+                        return;
+                    }
+
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                }
+            }
+            
+            waitForSite();
+        </script>
+
+    </body>
+</html>
