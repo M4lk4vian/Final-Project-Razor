@@ -24,11 +24,18 @@
     </head>
     <body>
 
-        <p id="message">Warming up your meals...</p>
+        <p id="message">Warming up your meals<span id="dots">.</span></p>
 
         <script>
             const targetUrl = "https://final-project-razor-a6d2acf0egeqche3.francecentral-01.azurewebsites.net/";
             const messageEl = document.getElementById("message");
+            const dotsEl = document.getElementById("dots");
+
+            let dotCount = 1;
+            setInterval(() => {
+                dotCount = (dotCount % 3) + 1;
+                dotsEl.textContent = ".".repeat(dotCount);
+            }, 500);
 
             async function checkIfReady(){
                 const controller = new AbortController();
@@ -48,11 +55,7 @@
             async function waitForSite() {
                 const startTime = Date.now();
                 const minDisplayTime = 5000;
-                let attempt = 0;
                 while (true) {
-                    attempt++;
-                    messageEl.textContent = "Warming up your meals... (attempt " + attempt + ")";
-
                     const ready = await checkIfReady();
                     if (ready) {
                         const elapsed = Date.now() - startTime;
