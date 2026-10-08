@@ -16,11 +16,6 @@
                 color: white;
             }
 
-            video{
-                width: 200px;
-                border-radius: 12px;
-            }
-
             #message{
                 margin-top: 20px;
                 font-size: 1.2rem;
@@ -29,10 +24,7 @@
     </head>
     <body>
 
-        <video autoplay loop muted playsinline>
-            <source src="https://media.tenor.com/yE-rY23bZlcAAAPo/chicken.mp4" type="video/mp4">
-        </video>
-        <p id="message">Warming up your food...</p>
+        <p id="message">Warming up your meals...</p>
 
         <script>
             const targetUrl = "https://final-project-razor-a6d2acf0egeqche3.francecentral-01.azurewebsites.net/";
@@ -59,7 +51,7 @@
                 let attempt = 0;
                 while (true) {
                     attempt++;
-                    messageEl.textContent = "Warming up your food... (attempt " + attempt + ")";
+                    messageEl.textContent = "Warming up your meals... (attempt " + attempt + ")";
 
                     const ready = await checkIfReady();
                     if (ready) {
@@ -68,7 +60,7 @@
                         if (remaining > 0) {
                             await new Promise(resolve => setTimeout(resolve, remaining));
                         }
-                        messageEl.textContent = "Ready! Showing food!";
+                        messageEl.textContent = "Ready! Showing your meals!";
                         window.location.href = targetUrl;
                         return;
                     }
