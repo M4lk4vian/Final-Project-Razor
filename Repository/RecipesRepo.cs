@@ -66,8 +66,7 @@ namespace Repository
 
                     #endregion
 
-                    if (con.State != ConnectionState.Open)
-                        con.Open();
+                    Generic.OpenWithRetry(con);
                     cmd.ExecuteNonQuery();
 
 
@@ -78,7 +77,7 @@ namespace Repository
             return recipe;
         }
 
-        public DataTable RetrieveAll() 
+        public DataTable RetrieveAll()
         {       
 
             DataTable dt = new DataTable();
@@ -118,9 +117,8 @@ namespace Repository
 
                     cmd.CommandText = query;
                     cmd.Connection = con;
-                    
-                    if (con.State != ConnectionState.Open)
-                        con.Open();
+
+                    Generic.OpenWithRetry(con);
 
                     SqlDataAdapter da = new SqlDataAdapter();
                     da.SelectCommand = cmd;
@@ -162,8 +160,7 @@ namespace Repository
                     cmd.Connection = con;
                     cmd.Parameters.Add("@recipeId", SqlDbType.Int).Value = recipeId;
 
-                    if (con.State != ConnectionState.Open)
-                        con.Open();
+                    Generic.OpenWithRetry(con);
 
                     SqlDataAdapter da = new SqlDataAdapter();
                     da.SelectCommand = cmd;
@@ -190,8 +187,7 @@ namespace Repository
                     cmd.Connection = con;
 
 
-                    if (con.State != ConnectionState.Open)
-                        con.Open();
+                    Generic.OpenWithRetry(con);
 
                     SqlDataAdapter da = new SqlDataAdapter();
                     da.SelectCommand = cmd;
@@ -215,8 +211,7 @@ namespace Repository
                     cmd.CommandText = query;
                     cmd.Connection = con;
 
-                    if (con.State != ConnectionState.Open)
-                        con.Open();
+                    Generic.OpenWithRetry(con);
 
                     SqlDataAdapter da = new SqlDataAdapter();
                     da.SelectCommand = cmd;
@@ -254,8 +249,7 @@ namespace Repository
                     cmd.CommandText = query;
                     cmd.Connection = con;
 
-                    if (con.State != ConnectionState.Open)
-                        con.Open();
+                    Generic.OpenWithRetry(con);
                     recipe.RecipeId = cmd.ExecuteNonQuery();
 
 
@@ -281,8 +275,7 @@ namespace Repository
                     command.Connection = connection;
                     command.Parameters.AddWithValue("@blockedStatus", SqlDbType.Bit).Value = blockedStatus;
 
-                    if (connection.State != ConnectionState.Open)
-                        connection.Open();
+                    Generic.OpenWithRetry(connection);
 
                     command.ExecuteNonQuery();
 
@@ -309,8 +302,7 @@ namespace Repository
                         command.CommandText = query;
                         command.Connection = connection;
 
-                        if (connection.State != ConnectionState.Open)
-                            connection.Open();
+                        Generic.OpenWithRetry(connection);
 
                         recipe.RecipeId = Convert.ToInt32(command.ExecuteScalar());
 
