@@ -24,7 +24,7 @@ namespace Final_Project_Razor.Pages.User
 
             _usersServices.Register(user);
 
-            return Redirect("/ModelUsers/Login");
+            return RedirectToPage("/ModelUsers/RegisterSuccess", new { userName = user.UserName });
         }
     }
 }

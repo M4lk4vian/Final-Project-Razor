@@ -1,0 +1,8 @@
+@page
+@model Final_Project_Razor.Pages.User.RegisterSuccessModel
+@{
+}
+<div class="text-center mt-5">
+    <h3>User "@Model.UserName" created with success, you can log in now</h3>
+    <a asp-page="/ModelUsers/Login" class="btn btn-primary mt-3">Go to Login</a>
+</div>

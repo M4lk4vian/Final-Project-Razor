@@ -2,41 +2,46 @@
 @model Final_Project_Razor.Pages.ReceitaModel
 @{
 }
-<p>Accepted Recipes</p>
-@if (Model.AcceptedRecipes != null)
+<h3 class="mb-4">Accepted Recipes</h3>
+@if (Model.AcceptedRecipes != null && Model.AcceptedRecipes.Count > 0)
 {
-    @foreach (var item in Model.AcceptedRecipes)
-    {
-        <div>
-            <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.RecipeId">
-                <button>@item.Title</button>
-            </a>
-        </div>
-
-    }
-    <br />
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+        @foreach (var item in Model.AcceptedRecipes)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.RecipeId" class="btn btn-primary">Manage Status</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {
-    <p>No accepted recipes yet</p>
+    <p class="mb-5">No accepted recipes yet</p>
 }
 
-<p>Blocked Recipes</p>
-@if(Model.BlockedRecipes != null)
+<h3 class="mb-4">Blocked Recipes</h3>
+@if (Model.BlockedRecipes != null && Model.BlockedRecipes.Count > 0)
 {
-    @foreach (var item in Model.BlockedRecipes)
-    {
-        <div>
-            <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.RecipeId">
-                <button>@item.Title</button>
-            </a>
-        </div>
-    }
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var item in Model.BlockedRecipes)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <a asp-page="/ModelRecipes/UpdateRecipesBlockedStatus" asp-route-Id="@item.RecipeId" class="btn btn-primary">Manage Status</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {
     <p>No blocked recipes yet</p>
 }
-
-
-

@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Final_Project_Razor</RootNamespace>
+    <AssemblyName>Final_Project_Razor</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

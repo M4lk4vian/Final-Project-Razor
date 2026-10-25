@@ -2,17 +2,22 @@
 @model Final_Project_Razor.Pages.ModelRecipes.RetrieveAllAcceptedModel
 @{
 }
-@if (Model.Recipes != null)
+<h3 class="mb-4">Accepted Recipes</h3>
+@if (Model.Recipes != null && Model.Recipes.Count > 0)
 {
-    @foreach (var item in Model.Recipes)
-    {
-        <div>
-            <a asp-page="/ModelRecipes/UpdateRecipeBlockedStatus" asp-route-RecipeId="@item.RecipeId">
-                <button>@item.Title</button>
-            </a>
-        </div>
-
-    }
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var item in Model.Recipes)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <a asp-page="/ModelRecipes/UpdateRecipeBlockedStatus" asp-route-RecipeId="@item.RecipeId" class="btn btn-primary">Manage Status</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {

@@ -1,3 +1,64 @@
+:root {
+  --color-bg: #FAF3E8;
+  --color-primary: #E8491D;
+  --color-primary-dark: #C23A14;
+  --color-accent: #F2A93B;
+  --color-dark: #211A17;
+  --color-text: #3B2F2A;
+}
+
+.bg-dark-custom {
+  background-color: var(--color-dark) !important;
+  border-bottom: 4px solid var(--color-primary);
+}
+
+.bg-dark-custom .navbar-brand {
+  color: var(--color-accent) !important;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+}
+
+.bg-dark-custom .nav-link {
+  color: #F2E9DD !important;
+  font-weight: 500;
+}
+
+.bg-dark-custom .nav-link:hover {
+  color: var(--color-accent) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-dark);
+}
+
+.card {
+  background-color: var(--color-dark);
+  border: none;
+  border-radius: 0.75rem;
+  border-top: 4px solid var(--color-primary);
+}
+
+.card .card-title {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.card .card-subtitle {
+  color: #C9BBAE !important;
+}
+
+.card .card-text {
+  color: #F2E9DD;
+}
+
+.badge.bg-secondary {
+  background-color: var(--color-primary) !important;
+}
+
+.badge.bg-light {
+  background-color: #F2E9DD !important;
+}
+
 html {
   font-size: 14px;
 }
@@ -9,7 +70,7 @@ html {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--color-accent);
 }
 
 html {
@@ -19,6 +80,8 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 .search-button {
@@ -40,7 +103,7 @@ body {
         float: left;
         width: 20%;
         padding: 10px;
-        background: #2196F3;
+        background: var(--color-primary);
         color: white;
         font-size: 17px;
         border: 1px solid grey;
@@ -49,7 +112,7 @@ body {
         }
 
         form.example button:hover {
-            background: #0b7dda;
+            background: var(--color-primary-dark);
         }
 
         /* Clear floats */
@@ -58,5 +121,3 @@ body {
         clear: both;
         display: table;
         }
-
-}
