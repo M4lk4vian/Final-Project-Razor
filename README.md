@@ -80,9 +80,13 @@ The schema (tables, primary/foreign keys) plus sample seed data is in [`Database
 
 ## Live Demo
 
-🔗 [final-project-razor-a6d2acf0egegche3.francecentral-01.azurewebsites.net](https://final-project-razor-a6d2acf0egegche3.francecentral-01.azurewebsites.net)
+🔗 [passif-agressif-cuisine.runasp.net](https://passif-agressif-cuisine.runasp.net)
 
-Hosted on Azure App Service (free tier) with an Azure SQL Database backend. The free tier spins down after periods of inactivity, so the first request after a while may take a few extra seconds while it wakes back up.
+Hosted on MonsterASP.NET (free tier) with a SQL Server backend. The free tier spins down after periods of inactivity, so the first request after a while may take a few extra seconds while it wakes back up.
+
+### Deployment Journey
+
+The site was originally deployed to Azure App Service with an Azure SQL Database backend. To avoid cold-start delays for visitors on the free tier, I set up periodic keep-alive pings — which, combined with regular testing, ended up exhausting Azure SQL serverless's monthly free compute quota (100,000 vCore-seconds) faster than expected, pausing the database mid-month until the quota reset. Rather than pay for extra compute on a portfolio project, I migrated the app and its data to MonsterASP.NET, a free ASP.NET + SQL Server host without that kind of usage cap, and adjusted the keep-alive strategy to only ping routes that don't touch the database.
 
 ## About This Project
 
